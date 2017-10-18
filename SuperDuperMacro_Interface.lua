@@ -427,10 +427,16 @@ function sdm_UpdateList()
 			end
 			sdm_SetTooltip(listItem, "Alt-click for folder options and instructions")
 		else
-			if mTab.icon:upper() == sdm_defaultIcon and mTab.type=="b" and (sdm_UsedByThisChar(mTab)) then
-				_,texture = GetMacroInfo(sdm_GetMacroIndex(mTab.ID))
-			else
-				texture = "INTERFACE\\ICONS\\"..mTab.icon
+			-- if mTab.icon:upper() == sdm_defaultIcon and mTab.type=="b" and (sdm_UsedByThisChar(mTab)) then
+            if type(mTab.icon) == "number" then
+                texture = mTab.icon
+            else
+                if mTab.icon:upper() == sdm_defaultIcon and mTab.type=="b" and (sdm_UsedByThisChar(mTab)) then
+                    _,texture = GetMacroInfo(sdm_GetMacroIndex(mTab.ID))
+                else
+                    texture = "INTERFACE\\ICONS\\"..mTab.icon
+                end
+			-- texture = "INTERFACE\\ICONS\\"..mTab.icon
 			end
 			if texture then
 				listItem.icon:SetTexture(texture)
@@ -633,7 +639,8 @@ function sdm_OnShow_changeIconFrame(f)
 	MacroPopupFrame:SetPoint("TOP", f, "BOTTOM", 0,15)
 	MacroPopupFrame:Show()
 	_,_,_,_,f.fontstring = MacroPopupFrame:GetRegions()
-	f.fontstring:SetText("        Different name on button:")
+	-- f.fontstring:SetText("        Different name on button:")
+    -- I don't know what is it now, and I try print all returns in MacroPopupFrame:GetRegions() but none of them has 'SetText' method.
 	MacroPopupOkayButton:Hide()
 	MacroPopupCancelButton:Hide()
 	MacroPopupFrame_sdmOkayButton:Show()
@@ -666,7 +673,7 @@ function sdm_OnHide_changeIconFrame(f)
 	for _,point in ipairs(f.prevpoints) do
 		MacroPopupFrame:SetPoint(point[1], point[2], point[3], point[4], point[5])
 	end
-	f.fontstring:SetText(MACRO_POPUP_TEXT)
+	-- f.fontstring:SetText(MACRO_POPUP_TEXT)
 	f.fontstring:Show()
 	MacroPopupEditBox:Show()
 	MacroPopupOkayButton:Show()
@@ -678,7 +685,7 @@ function sdm_OnHide_changeIconFrame(f)
 end
 
 function sdm_GetSelectedIcon()
-	return GetSpellorMacroIconInfo(MacroPopupFrame.selectedIcon)
+	return GetSpellorMacroIconInfo(MacroPopupFrame.selectedIcon) -- This will now return a number
 end
 
 function sdm_ChangeIconOkayed()
