@@ -428,14 +428,14 @@ function sdm_UpdateList()
 			sdm_SetTooltip(listItem, "Alt-click for folder options and instructions")
 		else
 			-- if mTab.icon:upper() == sdm_defaultIcon and mTab.type=="b" and (sdm_UsedByThisChar(mTab)) then
-            if type(mTab.icon) == "number" then
-                texture = mTab.icon
-            else
-                if mTab.icon:upper() == sdm_defaultIcon and mTab.type=="b" and (sdm_UsedByThisChar(mTab)) then
-                    _,texture = GetMacroInfo(sdm_GetMacroIndex(mTab.ID))
-                else
-                    texture = "INTERFACE\\ICONS\\"..mTab.icon
-                end
+			if type(mTab.icon) == "number" then
+				texture = mTab.icon
+			else
+				if mTab.icon:upper() == sdm_defaultIcon and mTab.type=="b" and (sdm_UsedByThisChar(mTab)) then
+					_,texture = GetMacroInfo(sdm_GetMacroIndex(mTab.ID))
+				else
+					texture = "INTERFACE\\ICONS\\"..mTab.icon
+				end
 			-- texture = "INTERFACE\\ICONS\\"..mTab.icon
 			end
 			if texture then
@@ -640,7 +640,7 @@ function sdm_OnShow_changeIconFrame(f)
 	MacroPopupFrame:Show()
 	_,_,_,_,f.fontstring = MacroPopupFrame:GetRegions()
 	-- f.fontstring:SetText("        Different name on button:")
-    -- I don't know what is it now, and I try print all returns in MacroPopupFrame:GetRegions() but none of them has 'SetText' method.
+	-- I don't know what is it now, and I try print all returns in MacroPopupFrame:GetRegions() but none of them has 'SetText' method.
 	MacroPopupOkayButton:Hide()
 	MacroPopupCancelButton:Hide()
 	MacroPopupFrame_sdmOkayButton:Show()
