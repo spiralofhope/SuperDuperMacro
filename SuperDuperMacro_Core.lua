@@ -411,7 +411,9 @@ function sdm_UpgradeMacro(index) -- Upgrades the given standard macro to a Super
 	local body = GetMacroBody(index)
 	EditMacro(index, nil, nil, "#sdm"..sdm_numToChars(sdm_GetEmptySlot()).."\n#placeholder") -- let SDM know that this is the macro to edit
 	local _, texture = GetMacroInfo(index) -- This must be done AFTER the macro body is edited, or the question mark could show up as something else.
-	texture = texture:sub(17) -- remove the "INTERFACE\\ICONS\\"
+	if type(texture) ~= "number" then
+		texture = texture:sub(17) -- remove the "INTERFACE\\ICONS\\"
+	end
 	local newMacro = sdm_CreateNew("b", name, character)
 	newMacro.icon = texture
 	sdm_Edit(newMacro, body)

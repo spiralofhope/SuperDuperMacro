@@ -13,10 +13,12 @@ f:SetPoint("TOPLEFT", 0, -104)
 sdm_MakeDraggable(f)
 f:SetScript("OnShow", function(self)
 	--PlaySound "igCharacterInfoOpen"
+	PlaySound(839)
 	sdm_UpdateList()
 end)
 f:SetScript("OnHide", function(self)
 	--PlaySound "igCharacterInfoClose"
+	PlaySound(840)
 	sdm_currentlyPlacing=nil
 	sdm_StopMove()
 	self:ClearAllPoints()
