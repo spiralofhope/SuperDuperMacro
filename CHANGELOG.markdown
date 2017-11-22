@@ -11,7 +11,7 @@
 
 ## 7.3 series
 
-###  7.3.0.4
+###  7.3.2.0
 
 - Merged pull 6 - Fix an exception when change icon:
   https://github.com/spiralofhope/SuperDuperMacro/pull/6

@@ -4,17 +4,17 @@
 
 # The interface number can be learned with:
 #   /dump select( 4, GetBuildInfo() )
-## Interface:       70300
-## Author:          spiralofhope, hypehuman
-## Title:           Super Super Macro
-## Notes:           Enables the creation of incredibly long macros.
-## Version:         7.3.0.4
-## SavedVariables:  sdm_version, sdm_listFilters, sdm_iconSize, sdm_mainContents, sdm_macros
-## DefaultState:    enabled
+## Interface:             70300
+## Author:                spiralofhope, hypehuman
+## Title:                 Super Super Macro
+## Notes:                 Enables the creation of incredibly long macros.
+## Version:               7.3.2.0
+## SavedVariables:        sdm_version, sdm_listFilters, sdm_iconSize, sdm_mainContents, sdm_macros
+## DefaultState:          enabled
 
-## X-Date:          2017-09-03
-## X-Website:       https://github.com/spiralofhope/SuperDuperMacro/
-## X-Feedback:      https://github.com/spiralofhope/SuperDuperMacro/issues/new
+## X-Date:                2017-11-21
+## X-Website:             https://github.com/spiralofhope/SuperDuperMacro/
+## X-Feedback:            https://github.com/spiralofhope/SuperDuperMacro/issues/new
 
 SuperDuperMacro_Core.lua
 SuperDuperMacro_Interface.lua
