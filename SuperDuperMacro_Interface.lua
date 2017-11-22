@@ -427,11 +427,15 @@ function sdm_UpdateList()
 			end
 			sdm_SetTooltip(listItem, "Alt-click for folder options and instructions")
 		else
-			if mTab.icon:upper() == sdm_defaultIcon and mTab.type=="b" and (sdm_UsedByThisChar(mTab)) then
-				_,texture = GetMacroInfo(sdm_GetMacroIndex(mTab.ID))
-			else
-				texture = "INTERFACE\\ICONS\\"..mTab.icon
-			end
+      if type(mTab.icon) == "number" then
+        texture = mTab.icon
+      else
+        if mTab.icon:upper() == sdm_defaultIcon and mTab.type=="b" and (sdm_UsedByThisChar(mTab)) then
+          _,texture = GetMacroInfo(sdm_GetMacroIndex(mTab.ID))
+        else
+          texture = "INTERFACE\\ICONS\\"..mTab.icon
+        end
+      end
 			if texture then
 				listItem.icon:SetTexture(texture)
 				listItem.icon:SetWidth(sdm_iconSize)
@@ -633,7 +637,12 @@ function sdm_OnShow_changeIconFrame(f)
 	MacroPopupFrame:SetPoint("TOP", f, "BOTTOM", 0,15)
 	MacroPopupFrame:Show()
 	_,_,_,_,f.fontstring = MacroPopupFrame:GetRegions()
-	f.fontstring:SetText("        Different name on button:")
+
+  -- https://github.com/a08381 says:
+  --   I don't know what is it now, and I try print all returns in MacroPopupFrame:GetRegions() but none of them has 'SetText' method.
+  --   https://github.com/spiralofhope/SuperDuperMacro/pull/6
+	--f.fontstring:SetText("        Different name on button:")
+
 	MacroPopupOkayButton:Hide()
 	MacroPopupCancelButton:Hide()
 	MacroPopupFrame_sdmOkayButton:Show()
@@ -666,7 +675,10 @@ function sdm_OnHide_changeIconFrame(f)
 	for _,point in ipairs(f.prevpoints) do
 		MacroPopupFrame:SetPoint(point[1], point[2], point[3], point[4], point[5])
 	end
-	f.fontstring:SetText(MACRO_POPUP_TEXT)
+
+  -- See comment above, by a08381
+	--f.fontstring:SetText(MACRO_POPUP_TEXT)
+
 	f.fontstring:Show()
 	MacroPopupEditBox:Show()
 	MacroPopupOkayButton:Show()

@@ -1,6 +1,6 @@
 # SuperDuperMacro has most recently been tested against:
-#   Version 7.3.0 (24931) (Release x64)
-#   Aug 29 2017
+#   Version 7.3.0 (25497) (Release x64)
+#   Nov 13 2017
 
 # The interface number can be learned with:
 #   /dump select( 4, GetBuildInfo() )
@@ -8,7 +8,7 @@
 ## Author:          spiralofhope, hypehuman
 ## Title:           Super Super Macro
 ## Notes:           Enables the creation of incredibly long macros.
-## Version:         7.3.0.3
+## Version:         7.3.0.4
 ## SavedVariables:  sdm_version, sdm_listFilters, sdm_iconSize, sdm_mainContents, sdm_macros
 ## DefaultState:    enabled
 

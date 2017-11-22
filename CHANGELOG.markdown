@@ -11,6 +11,13 @@
 
 ## 7.3 series
 
+###  7.3.0.4
+
+- Merged pull 6 - Fix an exception when change icon:
+  https://github.com/spiralofhope/SuperDuperMacro/pull/6
+    -  With thanks to a08381.
+
+
 ### 7.3.0.3
 
 - Fixed issue #3 - Fix child window scaling
