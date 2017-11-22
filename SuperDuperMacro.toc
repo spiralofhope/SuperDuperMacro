@@ -1,5 +1,5 @@
 # SuperDuperMacro has most recently been tested against:
-#   Version 7.3.0 (25497) (Release x64)
+#   Version 7.3.2 (25497) (Release x64)
 #   Nov 13 2017
 
 # The interface number can be learned with:
