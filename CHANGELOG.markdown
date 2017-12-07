@@ -30,7 +30,7 @@
 
 ### 7.3.0.1
 
-- Commented-out PlaySound(), because it will now only accept soundkit IDs.
+- Commented-out `PlaySound()`, because it will now only accept soundkit IDs.
   -  It will be updated later.
 
 
