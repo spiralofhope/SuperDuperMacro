@@ -1,6 +1,6 @@
 # SuperDuperMacro has most recently been tested against:
-#   Version 7.3.2 (25497) (Release x64)
-#   Nov 13 2017
+#   Version 7.3.5 (26365) (Release x64)
+#   Apr 3 2018
 
 # The interface number can be learned with:
 #   /dump select( 4, GetBuildInfo() )
@@ -12,7 +12,7 @@
 ## SavedVariables:        sdm_version, sdm_listFilters, sdm_iconSize, sdm_mainContents, sdm_macros
 ## DefaultState:          enabled
 
-## X-Date:                2017-11-21
+## X-Date:                2018-05-08
 ## X-Website:             https://github.com/spiralofhope/SuperDuperMacro/
 ## X-Feedback:            https://github.com/spiralofhope/SuperDuperMacro/issues/new
 

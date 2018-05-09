@@ -11,6 +11,17 @@
 
 ## 7.3 series
 
+### BETA
+
+hypehuman has officially left World of Warcraft, but has added me as a contributor.
+
+https://github.com/hypehuman/super-duper-macro/pull/1
+
+I'll keep WoWInterface updated so people can use Minion and whatnot.
+
+TODO - https://stackoverflow.com/questions/33088588
+
+
 ###  7.3.2.0
 
 - Merged pull 6 - Fix an exception when change icon:
