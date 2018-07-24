@@ -8,6 +8,14 @@
 * "WoW" to mean "World of Warcraft"
 
 
+## 8.0 series
+
+### 8.0.1 unreleased
+
+- Removed a .toc reference to a file that does not exist.
+  -  I don't know what `SuperDuperMacro_MacroInterpreter.lua` is.  It feels like this was just included in the rest of the addon.
+
+
 
 ## 7.3 series
 

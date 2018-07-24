@@ -20,4 +20,4 @@ SuperDuperMacro_Core.lua
 SuperDuperMacro_Interface.lua
 SuperDuperMacro_Sharing.lua
 SuperDuperMacro_Frames.lua
-SuperDuperMacro_MacroInterpreter.lua
+## SuperDuperMacro_MacroInterpreter.lua
