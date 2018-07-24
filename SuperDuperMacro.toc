@@ -1,18 +1,18 @@
 # SuperDuperMacro has most recently been tested against:
-#   Version 7.3.5 (26365) (Release x64)
-#   Apr 3 2018
+#   Version 8.0.1 (27144) (Release x64)
+#   Jul 19 2018
 
 # The interface number can be learned with:
 #   /dump select( 4, GetBuildInfo() )
-## Interface:             70300
+## Interface:             80000
 ## Author:                spiralofhope, hypehuman
 ## Title:                 Super Duper Macro
 ## Notes:                 Enables the creation of incredibly long macros.
-## Version:               7.3.2.0
+## Version:               8.0.1.1
 ## SavedVariables:        sdm_version, sdm_listFilters, sdm_iconSize, sdm_mainContents, sdm_macros
 ## DefaultState:          enabled
 
-## X-Date:                2018-05-08
+## X-Date:                2018-07-24
 ## X-Website:             https://github.com/spiralofhope/SuperDuperMacro/
 ## X-Feedback:            https://github.com/spiralofhope/SuperDuperMacro/issues/new
 
@@ -20,4 +20,3 @@ SuperDuperMacro_Core.lua
 SuperDuperMacro_Interface.lua
 SuperDuperMacro_Sharing.lua
 SuperDuperMacro_Frames.lua
-## SuperDuperMacro_MacroInterpreter.lua

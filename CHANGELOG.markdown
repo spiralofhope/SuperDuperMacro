@@ -10,8 +10,9 @@
 
 ## 8.0 series
 
-### 8.0.1 unreleased
+### 8.0.1.1
 
+- Tested for 8.0.1
 - Removed a .toc reference to a file that does not exist.
   -  I don't know what `SuperDuperMacro_MacroInterpreter.lua` is.  It feels like this was just included in the rest of the addon.
 
@@ -26,8 +27,6 @@ hypehuman has officially left World of Warcraft, but has added me as a contribut
 https://github.com/hypehuman/super-duper-macro/pull/1
 
 I'll keep WoWInterface updated so people can use Minion and whatnot.
-
-TODO - https://stackoverflow.com/questions/33088588
 
 
 ###  7.3.2.0
