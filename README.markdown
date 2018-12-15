@@ -49,7 +49,7 @@ Perhaps your game is installed to one of:
 
 .. and so you would end up with the folder 
 
-  `C:\Program Files\World of Warcraft\Interface\AddOns\SuperDuperMacro`
+  `C:\Program Files\World of Warcraft\_retail_\Interface\AddOns\SuperDuperMacro`
 
 .. and inside it would have `SuperDuperMacro.toc` and all the other files.
 
