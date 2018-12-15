@@ -45,7 +45,7 @@ Perhaps your game is installed to one of:
 
 .. and so you would extract the contents of your downloaded archive to something like:
 
-  `C:\Program Files\World of Warcraft\Interface\AddOns` 
+  `C:\Program Files\World of Warcraft\_retail_\Interface\AddOns` 
 
 .. and so you would end up with the folder 
 
