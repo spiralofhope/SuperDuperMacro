@@ -247,35 +247,85 @@ function sdm_UnSetUpMacro(mTab)
 	end
 end
 
-function sdm_SetUpMacroFrames(clickerName, text, currentLayer) --returns the frame to be clicked
-	local currentFrame=1
-	local frameText=""
-	local nextLayerText=""
-	for line in text:gmatch("[^\r\n]+") do
+function sdm_SetUpMacroFrames( clickerName, text, currentLayer )
+  -- Returns the frame to be clicked
+	local currentFrame = 1
+	local frameText = ''
+	local nextLayerText = ''
+	for line in text:gmatch( "[^\r\n]+" ) do
 		if line~="" then
-			if frameText~="" then --if this is not the first line of the frame, we need to add a carriage return before it.
+			if frameText~="" then
+        -- If this is not the first line of the frame, we need to add a carriage return before it.
         --debug( 'adding a carriage return before it' )
-				line="\n"..line
+				line = "\n" .. line
 			end
-			if (frameText:len()+line:len() > 1023) then --adding this line would be too much, so finish this frame and move on to the next.
+			if ( frameText:len() + line:len() > 1023 ) then 
+        -- Adding this line would be too much, so finish this frame and move on to the next.
         debug( frameText:len() .. ' + ' .. line:len() .. ' > 1023' )
         debug( '  finishing this frame and moving on to the next' )
-				sdm_MakeMacroFrame(clickerName.."_"..currentLayer.."_"..currentFrame, frameText)
-				if nextLayerText~="" then nextLayerText= nextLayerText.."\n" end
-				nextLayerText = nextLayerText..sdm_GetLinkText(clickerName.."_"..currentLayer.."_"..currentFrame)
-				frameText = ""
-				currentFrame = currentFrame+1
+				sdm_MakeMacroFrame(
+          (
+            clickerName
+            .. '_'
+            .. currentLayer
+            .. '_'
+            .. currentFrame
+          ),
+          frameText
+        )
+				if nextLayerText~="" then nextLayerText = ( nextLayerText .. "\n" ) end
+				nextLayerText = (
+          nextLayerText
+          .. sdm_GetLinkText(
+            clickerName
+            .. '_'
+            .. currentLayer
+            .. '_'
+            .. currentFrame
+          )
+        )
+				frameText = ''
+				currentFrame = currentFrame + 1
 			end
-			frameText = frameText..line
+			frameText = ( frameText .. line )
 		end
-		text=text:sub((text:find("\n") or text:len())+1) --remove the line from the text
+    -- Remove the line from the text
+		text = text:sub( ( text:find( "\n" ) or text:len() ) + 1 )
 	end
-	if currentFrame==1 then
-		return sdm_MakeMacroFrame(clickerName, frameText)
+  debug( 'frame # ' .. currentFrame )
+	if currentFrame == 1 then
+		return sdm_MakeMacroFrame(
+      clickerName,
+      frameText
+    )
 	else
-		sdm_MakeMacroFrame(clickerName.."_"..currentLayer.."_"..currentFrame, frameText) --repeated from above; just finishing off this frame
-		nextLayerText = nextLayerText.."\n"..sdm_GetLinkText(clickerName.."_"..currentLayer.."_"..currentFrame)
-		return sdm_SetUpMacroFrames(clickerName, nextLayerText, currentLayer+1)
+    -- Repeated from above; just finishing off this frame
+		sdm_MakeMacroFrame(
+      (
+        clickerName
+        .. '_'
+        .. currentLayer
+        .. '_'
+        .. currentFrame
+      ),
+      frameText
+    )
+		nextLayerText = (
+      nextLayerText
+      .. "\n"
+      .. sdm_GetLinkText(
+        clickerName
+        .. '_'
+        .. currentLayer
+        .. '_'
+        .. currentFrame
+      )
+    )
+		return sdm_SetUpMacroFrames(
+      clickerName,
+      nextLayerText,
+      currentLayer + 1
+    )
 	end
 end
 
