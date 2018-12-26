@@ -142,6 +142,13 @@ sdm_eventFrame:SetScript("OnEvent", function (self, event, ...)
 	end
 end)
 
+SuperDuperMacro_options_debug = true
+local function debug( text )
+  --if not SuperDuperMacro_options.debug then return end
+  if not SuperDuperMacro_options_debug then return end
+  print( 'SuperDuperMacro - ' .. GetTime() .. ' - ' .. tostring ( text ) )
+end
+
 function sdm_MakeMacroFrame(name, text)
 	sdm_DoOrQueue("local temp = getglobal("..sdm_Stringer(name)..") or CreateFrame(\"Button\", "..sdm_Stringer(name)..", nil, \"SecureActionButtonTemplate\")\
 	temp:SetAttribute(\'type\', \'macro\')\
@@ -189,15 +196,21 @@ function sdm_SetUpMacro(mTab)
 	local perCharacter = mTab.characters~=nil
 	local ID = mTab.ID
 	local icon = mTab.icon
+  -- Macros larger than 248 are not executed
 	local charLimit = 255
+	--local charLimit = 259  --  Anything less will abort with a 248-ish character macro.. sometimes it will just chop off a whisper if it ends with one.
 	if type=="b" then
 		text="#sdm"..sdm_numToChars(ID).."\n"..text
 	end
 	local nextFrameName = "sdh"..sdm_numToChars(ID)
 	local frameText
 	if text:len()<=charLimit then
+    debug( 'short:  ' .. mTab.name )
+    debug( '  ' .. text:len() .. ' <= ' .. charLimit )
 		frameText = text
 	else
+    debug( 'long:  ' .. mTab.name )
+    debug( '  ' .. text:len() .. ' > ' .. charLimit )
 		frameText = ""
 		local linkText = "\n"..sdm_GetLinkText(nextFrameName)
 		for line in text:gmatch("[^\r\n]+") do
@@ -205,10 +218,12 @@ function sdm_SetUpMacro(mTab)
 				if frameText~="" then --if this is not the first line of the frame, we need to add a carriage return before it.
 					line="\n"..line
 				end
+        ----[[  The following will allow longer macros to trigger, but will just chop them off.
 				if frameText:len()+line:len()+linkText:len() > charLimit then --adding this line would be too much, so just add the link and be done with it. (note that this line does NOT get removed from the master text)
 					frameText = frameText..linkText
 					break
 				end
+        --]]
 				frameText = frameText..line
 			end
 			text=text:sub((text:find("\n") or text:len())+1) --remove the line from the text
@@ -239,9 +254,12 @@ function sdm_SetUpMacroFrames(clickerName, text, currentLayer) --returns the fra
 	for line in text:gmatch("[^\r\n]+") do
 		if line~="" then
 			if frameText~="" then --if this is not the first line of the frame, we need to add a carriage return before it.
+        --debug( 'adding a carriage return before it' )
 				line="\n"..line
 			end
 			if (frameText:len()+line:len() > 1023) then --adding this line would be too much, so finish this frame and move on to the next.
+        debug( frameText:len() .. ' + ' .. line:len() .. ' > 1023' )
+        debug( '  finishing this frame and moving on to the next' )
 				sdm_MakeMacroFrame(clickerName.."_"..currentLayer.."_"..currentFrame, frameText)
 				if nextLayerText~="" then nextLayerText= nextLayerText.."\n" end
 				nextLayerText = nextLayerText..sdm_GetLinkText(clickerName.."_"..currentLayer.."_"..currentFrame)
