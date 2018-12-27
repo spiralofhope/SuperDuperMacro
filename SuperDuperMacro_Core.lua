@@ -144,8 +144,8 @@ end)
 
 
 
-SuperDuperMacro_options_debug = true
---SuperDuperMacro_options_debug = false
+--SuperDuperMacro_options_debug = true
+SuperDuperMacro_options_debug = false
 local function debug( text )
   --if not SuperDuperMacro_options.debug then return end
   if not SuperDuperMacro_options_debug then return end
