@@ -142,12 +142,17 @@ sdm_eventFrame:SetScript("OnEvent", function (self, event, ...)
 	end
 end)
 
+
+
 SuperDuperMacro_options_debug = true
+--SuperDuperMacro_options_debug = false
 local function debug( text )
   --if not SuperDuperMacro_options.debug then return end
   if not SuperDuperMacro_options_debug then return end
   print( 'SuperDuperMacro - ' .. GetTime() .. ' - ' .. tostring ( text ) )
 end
+
+
 
 function sdm_MakeMacroFrame(name, text)
 	sdm_DoOrQueue("local temp = getglobal("..sdm_Stringer(name)..") or CreateFrame(\"Button\", "..sdm_Stringer(name)..", nil, \"SecureActionButtonTemplate\")\
@@ -187,56 +192,95 @@ function sdm_GetLinkText(nextName)
 	return "/click [btn:5]"..nextName.." Button5;[btn:4]"..nextName.." Button4;[btn:3]"..nextName.." MiddleButton;[btn:2]"..nextName.." RightButton;"..nextName
 end
 
-function sdm_SetUpMacro(mTab)
-	local type = mTab.type
-	if type~="b" and type~="f" then
+
+
+--  Attempting to fix the 8.1 long macro issue:
+--  I think the problem is in here.
+--  I think that something is aborting before additional sub-frames are created.
+--  Or perhaps macro content is not being populated into the frames.
+
+
+--  This is a button macro to test with.
+--  Don't save the macro with a trailing enter.
+--  according to  `wc -b`  this is 248 characters.. which seems odd.  I guess that's not counting the 7 line endings.
+--[[
+
+/run print( '  --  ' .. GetTime() )
+/target [@player]
+/cleartarget
+-- abcdefghijklmnopqrstuvwxyzabcdefgh
+/target [@player]
+-- change to be yourself, being careful to add/subtract from the above padding
+/w spiralofhope 123456789_123456789_123456789_
+
+--]]
+
+function sdm_SetUpMacro( mTab )
+
+  --  Attempting to fix the 8.1 long macro issue:
+	local  macro_maximum_character_length = 255
+  --  Attempting to fix the 8.1 long macro issue:
+  --  Anything less will abort with a 248-ish character macro.. I think it's not properly counting lengths line with  \n  but I can't nail it down
+  --  Sometimes it will just chop off a whisper if it ends with one.
+	--local macro_maximum_character_length = 259
+
+	local  text          =  mTab.text
+	local  characters    =  mTab.characters  ~=  nil
+	local  nextFrameName =  'sdh' .. sdm_numToChars( mTab.ID )
+	local  frameText
+
+	if mTab.type ~= 'b' and mTab.type ~= 'f' then
+    debug ( "aborting (because of some type thing I don't understand)" )
 		return
 	end
-	local text = mTab.text
-	local perCharacter = mTab.characters~=nil
-	local ID = mTab.ID
-	local icon = mTab.icon
-  -- Macros larger than 248 are not executed
-	local charLimit = 255
-	--local charLimit = 259  --  Anything less will abort with a 248-ish character macro.. sometimes it will just chop off a whisper if it ends with one.
-	if type=="b" then
-		text="#sdm"..sdm_numToChars(ID).."\n"..text
+
+	if mTab.type == 'b' then
+		text = '#sdm' .. sdm_numToChars( mTab.ID ) .. '\n' .. text
 	end
-	local nextFrameName = "sdh"..sdm_numToChars(ID)
-	local frameText
-	if text:len()<=charLimit then
-    debug( 'short:  ' .. mTab.name )
-    debug( '  ' .. text:len() .. ' <= ' .. charLimit )
+
+	if text:len() <= macro_maximum_character_length then
+    debug( 'short: ( ' .. text:len() .. ' ) ' .. mTab.name )
 		frameText = text
 	else
-    debug( 'long:  ' .. mTab.name )
-    debug( '  ' .. text:len() .. ' > ' .. charLimit )
-		frameText = ""
-		local linkText = "\n"..sdm_GetLinkText(nextFrameName)
-		for line in text:gmatch("[^\r\n]+") do
-			if line~="" then
-				if frameText~="" then --if this is not the first line of the frame, we need to add a carriage return before it.
-					line="\n"..line
+    debug( 'long: ( ' .. text:len() .. ' ) ' .. mTab.name )
+		frameText = ''
+		local linkText = '\n' .. sdm_GetLinkText( nextFrameName )
+
+		for line in text:gmatch( "[^\r\n]+" ) do
+			if line ~= '' then
+				if frameText ~= '' then
+        -- if this is not the first line of the frame, we need to add a carriage return before it.
+					line = '\n' .. line
 				end
-        ----[[  The following will allow longer macros to trigger, but will just chop them off.
-				if frameText:len()+line:len()+linkText:len() > charLimit then --adding this line would be too much, so just add the link and be done with it. (note that this line does NOT get removed from the master text)
-					frameText = frameText..linkText
+        --  Attempting to fix the 8.1 long macro issue:
+        --  With the following uncommented,   too-long macros will not run.
+        --  With the following commented-out, too-long macros will     run but be chopped off (demonstrated by a too-long macro ending with a whisper that runs over length).
+        ----[[
+				if ( frameText:len() + line:len() + linkText:len() ) > macro_maximum_character_length then
+        -- adding this line would be too much, so just add the link and be done with it. (note that this line does NOT get removed from the master text)
+					frameText = frameText .. linkText
 					break
 				end
         --]]
-				frameText = frameText..line
+				frameText = frameText .. line
 			end
-			text=text:sub((text:find("\n") or text:len())+1) --remove the line from the text
+      -- Remove the line from the text
+			text = text:sub( ( text:find( '\n' ) or text:len() ) + 1 )
 		end
 	end
-	sdm_SetUpMacroFrames(nextFrameName, text, 1)
-	if type=="b" then
-		sdm_MakeBlizzardMacro(ID, (mTab.buttonName or mTab.name), icon, frameText, perCharacter)
-		sdm_MakeMacroFrame("sdb_"..mTab.name, frameText)
-	elseif type=="f" then
-		sdm_MakeMacroFrame("sdf_"..mTab.name, frameText)
+
+	sdm_SetUpMacroFrames( nextFrameName, text, 1 )
+
+	if mTab.type == 'b' then
+		sdm_MakeBlizzardMacro( mTab.ID, ( mTab.buttonName or mTab.name ), mTab.icon, frameText, characters )
+		sdm_MakeMacroFrame( 'sdb_' .. mTab.name, frameText)
+	elseif mTab.type == 'f' then
+		sdm_MakeMacroFrame( 'sdf_' .. mTab.name, frameText)
 	end
+
 end
+
+
 
 function sdm_UnSetUpMacro(mTab)
 	if sdm_UsedByThisChar(mTab) and (mTab.type=="b" or mTab.type=="f") then
@@ -247,21 +291,26 @@ function sdm_UnSetUpMacro(mTab)
 	end
 end
 
+
+
 function sdm_SetUpMacroFrames( clickerName, text, currentLayer )
   -- Returns the frame to be clicked
+
 	local currentFrame = 1
 	local frameText = ''
 	local nextLayerText = ''
+
 	for line in text:gmatch( "[^\r\n]+" ) do
-		if line~="" then
-			if frameText~="" then
+		if line ~= '' then
+			if frameText ~= '' then
         -- If this is not the first line of the frame, we need to add a carriage return before it.
         --debug( 'adding a carriage return before it' )
-				line = "\n" .. line
+				line = '\n' .. line
 			end
 			if ( frameText:len() + line:len() > 1023 ) then 
         -- Adding this line would be too much, so finish this frame and move on to the next.
-        debug( frameText:len() .. ' + ' .. line:len() .. ' > 1023' )
+        debug( 'frame text '  .. frameText:len() .. ' characters' )
+        debug( 'line length ' .. line:len()      .. ' characters' )
         debug( '  finishing this frame and moving on to the next' )
 				sdm_MakeMacroFrame(
           (
@@ -273,7 +322,7 @@ function sdm_SetUpMacroFrames( clickerName, text, currentLayer )
           ),
           frameText
         )
-				if nextLayerText~="" then nextLayerText = ( nextLayerText .. "\n" ) end
+				if nextLayerText ~= '' then nextLayerText = ( nextLayerText .. '\n' ) end
 				nextLayerText = (
           nextLayerText
           .. sdm_GetLinkText(
@@ -289,9 +338,14 @@ function sdm_SetUpMacroFrames( clickerName, text, currentLayer )
 			end
 			frameText = ( frameText .. line )
 		end
+
     -- Remove the line from the text
-		text = text:sub( ( text:find( "\n" ) or text:len() ) + 1 )
+    --debug( 'Remove the line from the text ' .. text )
+    --debug( 'before: ' .. text )
+		text = text:sub( ( text:find( '\n' ) or text:len() ) + 1 )
+    --debug( 'after: ' .. text )
 	end
+
   debug( 'frame # ' .. currentFrame )
 	if currentFrame == 1 then
 		return sdm_MakeMacroFrame(
@@ -299,7 +353,7 @@ function sdm_SetUpMacroFrames( clickerName, text, currentLayer )
       frameText
     )
 	else
-    -- Repeated from above; just finishing off this frame
+    debug( 'finishing off this frame' )
 		sdm_MakeMacroFrame(
       (
         clickerName
@@ -312,7 +366,7 @@ function sdm_SetUpMacroFrames( clickerName, text, currentLayer )
     )
 		nextLayerText = (
       nextLayerText
-      .. "\n"
+      .. '\n'
       .. sdm_GetLinkText(
         clickerName
         .. '_'
@@ -321,13 +375,18 @@ function sdm_SetUpMacroFrames( clickerName, text, currentLayer )
         .. currentFrame
       )
     )
+
+    -- Continue on to create the next layer
 		return sdm_SetUpMacroFrames(
       clickerName,
       nextLayerText,
       currentLayer + 1
     )
 	end
+
 end
+
+
 
 function sdm_CancelNewMacroButtonPressed()
 	sdm_newFrame:Hide()
