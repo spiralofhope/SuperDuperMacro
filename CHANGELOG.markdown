@@ -10,6 +10,12 @@
 
 ## 8.0 series
 
+### 8.1.0.1
+
+- Fixed #16 - Long Macros Not working
+- While fixing #16, significant code style changes were made in a few places.
+
+
 ### 8.0.1.1
 
 - Tested for 8.0.1
