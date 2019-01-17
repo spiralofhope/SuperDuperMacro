@@ -430,12 +430,29 @@ function sdm_UpdateList()
       if type(mTab.icon) == "number" then
         texture = mTab.icon
       else
-        if mTab.icon:upper() == sdm_defaultIcon and mTab.type=="b" and (sdm_UsedByThisChar(mTab)) then
-          _,texture = GetMacroInfo(sdm_GetMacroIndex(mTab.ID))
-        else
-          texture = "INTERFACE\\ICONS\\"..mTab.icon
+
+
+        do  --  My old notes said to replace this
+          --[[
+          if mTab.icon:upper() == sdm_defaultIcon and mTab.type=="b" and (sdm_UsedByThisChar(mTab)) then
+            _,texture = GetMacroInfo(sdm_GetMacroIndex(mTab.ID))
+          else
+            texture = "INTERFACE\\ICONS\\"..mTab.icon
+          end
+          --]]
+          
+          if mTab.icon ~= nil and type( mTab.icon ) ~= "number" then
+            if mTab.icon:upper() == sdm_defaultIcon and mTab.type == "b" and ( sdm_UsedByThisChar( mTab ) ) then
+            _,texture = GetMacroInfo( sdm_GetMacroIndex( mTab.ID ) )
+            else
+            texture = "INTERFACE\\ICONS\\" .. mTab.icon
+            end
+          end
+          
         end
+
       end
+
 			if texture then
 				listItem.icon:SetTexture(texture)
 				listItem.icon:SetWidth(sdm_iconSize)
