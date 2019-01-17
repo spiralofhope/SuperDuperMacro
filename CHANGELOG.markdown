@@ -10,6 +10,11 @@
 
 ## 8.0 series
 
+### 8.1.0.2
+
+- Partially-addressed #15 - Fix "Change Name/Icon"
+
+
 ### 8.1.0.1
 
 - Fixed #16 - Long Macros Not working
