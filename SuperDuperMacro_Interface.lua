@@ -445,7 +445,7 @@ function sdm_UpdateList()
             if mTab.icon:upper() == sdm_defaultIcon and mTab.type == "b" and ( sdm_UsedByThisChar( mTab ) ) then
             _,texture = GetMacroInfo( sdm_GetMacroIndex( mTab.ID ) )
             else
-            texture = "INTERFACE\\ICONS\\" .. mTab.icon
+            texture = "INTERFACE\\ICONS\\" ..  mTab.icon
             end
           end
           
@@ -653,19 +653,19 @@ function sdm_OnShow_changeIconFrame(f)
 	MacroPopupFrame:SetParent(f)
 	MacroPopupFrame:SetPoint("TOP", f, "BOTTOM", 0,15)
 	MacroPopupFrame:Show()
-	_,_,_,_,f.fontstring = MacroPopupFrame:GetRegions()
+	_,_,_,_,f.fontstring = MacroPopupFrame.BorderBox:GetRegions()
 
   -- https://github.com/a08381 says:
   --   I don't know what is it now, and I try print all returns in MacroPopupFrame:GetRegions() but none of them has 'SetText' method.
   --   https://github.com/spiralofhope/SuperDuperMacro/pull/6
 	--f.fontstring:SetText("        Different name on button:")
 
-	MacroPopupOkayButton:Hide()
-	MacroPopupCancelButton:Hide()
-	MacroPopupFrame_sdmOkayButton:Show()
-	MacroPopupFrame_sdmCancelButton:Show()
-	if mTab.type=="b" then
-		if (not mTab.buttonName) then
+  --MacroPopupFrame.BorderBox.OkayButton:Hide()
+	--MacroPopupFrame.BorderBox.CancelButton:Hide()
+	--MacroPopupFrame_sdmOkayButton:Show()
+	--MacroPopupFrame_sdmCancelButton:Show()
+	if mTab.type == 'b' then
+		if ( not mTab.buttonName ) then
 			MacroPopupFrame_buttonTextCheckBox:SetChecked(nil)
 		else
 			MacroPopupFrame_buttonTextCheckBox:SetChecked(1)
@@ -698,10 +698,10 @@ function sdm_OnHide_changeIconFrame(f)
 
 	f.fontstring:Show()
 	MacroPopupEditBox:Show()
-	MacroPopupOkayButton:Show()
-	MacroPopupCancelButton:Show()
-	MacroPopupFrame_sdmOkayButton:Hide()
-	MacroPopupFrame_sdmCancelButton:Hide()
+	--MacroPopupFrame.BorderBox.OkayButton:Show()
+	--MacroPopupFrame.BorderBox.CancelButton:Show()
+	--MacroPopupFrame_sdmOkayButton:Hide()
+	--MacroPopupFrame_sdmCancelButton:Hide()
 	MacroPopupFrame:Hide()
 	MacroPopupFrame_buttonTextCheckBox:Hide()
 end
