@@ -207,6 +207,7 @@ end)
 f:SetFontObject("GameFontHighlightSmall")
 sdm_bodyScroller:SetScrollChild(f)
 
+-- The editable text area
 f = CreateFrame("Button", "sdm_bodyBackground", sdm_mainFrame)
 f:SetPoint("BOTTOMLEFT", sdm_bodyScroller, -5,-5)
 f:SetPoint("TOPRIGHT", sdm_bodyScroller, 27,5)
@@ -237,8 +238,8 @@ fs:SetPoint("BOTTOMLEFT", 10,10)
 fs:SetPoint("TOPRIGHT", -10,-10)
 
 -- Macro list:
-
 f = CreateFrame("ScrollFrame", "sdm_listScroller", sdm_mainFrame, "UIPanelScrollFrameTemplate")
+-- TODO - make this configurable / resizable
 f:SetWidth(268)
 f:SetPoint("TOP", sdm_newButton, "BOTTOM", 0, -5)
 f:SetPoint("BOTTOMLEFT", 20,50)

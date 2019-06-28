@@ -633,7 +633,9 @@ function sdm_OnShow_changeIconFrame(f)
 		RefreshPlayerSpellIconInfo() -- You gotta do this, or there will be lots of errors!
 	end
 	local mTab = sdm_macros[sdm_currentEdit]
-	MacroPopupFrame.selectedIcon = nil -- NYI: here would be a good place to select the current icon and scroll to that place in the list
+  -- TODO - Select the current icon and scroll to that place in the list
+  -- Can be done with the following:
+	MacroPopupFrame.selectedIcon = nil
 	f.prevonshow=MacroPopupFrame:GetScript("OnShow")
 	MacroPopupFrame:SetScript("OnShow", MacroPopupFrame_Update)
 	f.prevonenter=MacroPopupEditBox:GetScript("OnEnterPressed")
