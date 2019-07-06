@@ -58,6 +58,7 @@ Perhaps your game is installed to one of:
 - [Curse FAQ on manually installing AddOns](https://mods.curse.com/faqs/wow-addons#manual)
 
 
+
 # Configuration / Usage
 
 Open the interface by typing `/sdm`
@@ -68,11 +69,15 @@ Open the interface by typing `/sdm`
 - Share macros in-game.
 - Button macros
   -  36 global and 18 character-specific for each character.
-* Floating macros accessed by `/click`
+- Floating macros are accessed with `/click` either at the chat box or within a macro.
+  -  There is a `Usage` button which will explain how.
   -  You can make as many of these as you want.
-* Lua scripts of unlimited length
+- Lua scripts of unlimited length
   -  `/sdm run <name>`
   -  `sdm_RunScript("name")`
+- NOTE:  World of Warcraft has a limitation where the macro's icon will not change if `#showtooltip` or the macro are long.
+  -  SuperDuperMacro has not attempted to correct for this limit, so if you have a very long `#showtooltip` with many modifiers like `[mod:x]` or `[form:x`], your icon will not change.  You can still have a complex macro, but that `#showtooltip` will have to be made simple.
+
 
 
 # Issues and suggestions
@@ -86,7 +91,8 @@ Open the interface by typing `/sdm`
   -  There are several helpful addons to catch errors.  Try something like [TekErr](http://www.wowinterface.com/downloads/info6681).
 
 
-# Special thanks
+
+# hypehuman's special thanks
 
 - The **SuperMacro** AddOn, which inspired the idea for this addon.
 - All the regulars on the UI & Macro forums, who have been guiding me through this process.
