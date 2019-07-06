@@ -10,6 +10,11 @@
 
 ## 8.0 series
 
+### 8.2.0.1
+
+- Updated `README.markdown` to note the limitation for `#showtooltip`
+
+
 ### 8.1.0.2
 
 - Partially-addressed #15 - Fix "Change Name/Icon"

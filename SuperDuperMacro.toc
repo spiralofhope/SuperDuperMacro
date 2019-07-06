@@ -1,16 +1,16 @@
 # SuperDuperMacro has most recently been tested against:
-#   Version 8.1.0 (29088) (Release x64)
-#   Jan 16 2019
+#   Version 8.2.0 (30993) (Release x64)
+#   Jun 2 2019
 
 # The interface number can be learned with:
 #   /dump select( 4, GetBuildInfo() )
-## Interface:             80100
+## Interface:             80200
 ## Title:                 Super Duper Macro
 
 ## Notes:                 Enables the creation of incredibly long macros.
 ## Author:                spiralofhope, hypehuman
-## Version:               8.1.0.2
-## X-Date:                2019-01-16
+## Version:               8.2.0.1
+## X-Date:                2019-07-05
 ## X-Website:             https://github.com/spiralofhope/SuperDuperMacro/
 ## X-Feedback:            https://github.com/spiralofhope/SuperDuperMacro/issues/new
 
