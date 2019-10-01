@@ -36,25 +36,25 @@ end)
 -- Artwork and text:
 
 t = f:CreateTexture("sdm_mainFramePortrait", "BACKGROUND")
-t:SetTexture("Interface\\AddOns\\SuperDuperMacro\\SDM-Icon.tga")
+t:SetTexture("Interface\\AddOns\\SuperDuperMacro\\images\\SDM-Icon.tga")
 t:SetWidth(60)
 t:SetHeight(60)
 t:SetPoint("TOPLEFT", 7,-6)
 
 t = f:CreateTexture("sdm_mainFrameLeft", "ARTWORK")
-t:SetTexture("Interface\\AddOns\\SuperDuperMacro\\SDM-MainFrame-Left.tga")
+t:SetTexture("Interface\\AddOns\\SuperDuperMacro\\images\\SDM-MainFrame-Left.tga")
 t:SetWidth(256)
 t:SetHeight(512)
 t:SetPoint("TOPLEFT")
 
 t = f:CreateTexture("sdm_mainFrameMiddle", "ARTWORK")
-t:SetTexture("Interface\\AddOns\\SuperDuperMacro\\SDM-MainFrame-Middle.tga")
+t:SetTexture("Interface\\AddOns\\SuperDuperMacro\\images\\SDM-MainFrame-Middle.tga")
 t:SetWidth(256) -- The original Auction House frame uses 320 for this value.
 t:SetHeight(512)
 t:SetPoint("TOPLEFT", sdm_mainFrameLeft, "TOPRIGHT")
 
 t = f:CreateTexture("sdm_mainFrameRight", "ARTWORK")
-t:SetTexture("Interface\\AddOns\\SuperDuperMacro\\SDM-MainFrame-Right.tga")
+t:SetTexture("Interface\\AddOns\\SuperDuperMacro\\images\\SDM-MainFrame-Right.tga")
 t:SetWidth(256)
 t:SetHeight(512)
 t:SetPoint("TOPLEFT", sdm_mainFrameMiddle, "TOPRIGHT")
@@ -725,7 +725,7 @@ function sdm_CreateDefaultMacroFrameButtons()
 	t:SetPoint("CENTER", -1,0)
 	t:SetWidth(20)
 	t:SetHeight(20)
-	t:SetTexture("Interface\\AddOns\\SuperDuperMacro\\SDM-Icon.tga")
+	t:SetTexture("Interface\\AddOns\\SuperDuperMacro\\images\\SDM-Icon.tga")
 	sdm_SetTooltip(f, "Open Super Duper Macro, an advanced macro interface that lets you create longer macros")
 
 	--Create the button that turns a regular macro into a Super Duper macro
@@ -739,7 +739,7 @@ function sdm_CreateDefaultMacroFrameButtons()
 	t:SetPoint("TOPRIGHT", f, "TOPRIGHT", -margin, -margin)
 	t:SetPoint("BOTTOM", f, "BOTTOM", 0, margin)
 	t:SetWidth(t:GetHeight())
-	t:SetTexture("Interface\\AddOns\\SuperDuperMacro\\SDM-Icon.tga")
+	t:SetTexture("Interface\\AddOns\\SuperDuperMacro\\images\\SDM-Icon.tga")
 	f:SetScript("OnClick", sdm_UpgradeButtonClicked)
 	sdm_SetTooltip(f, "Turn the selected macro into a Super Duper Macro, allowing you to make it longer")
 
