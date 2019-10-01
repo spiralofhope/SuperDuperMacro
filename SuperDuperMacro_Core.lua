@@ -1,53 +1,53 @@
 sdm_printPrefix = "|cffff7700Super Duper Macro|r - "
-sdm_defaultIcon = "INV_MISC_QUESTIONMARK"
+sdm_defaultIcon = 'INV_MISC_QUESTIONMARK'
 sdm_MaxTotalMacros = MAX_ACCOUNT_MACROS + MAX_CHARACTER_MACROS
 sdm_countUpdateMacrosEvents=0
 
 sdm_validChars = {32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,60,61,62,63,64,65,66,67,68,69,70,71,72,73,74,75,76,77,78,79,80,81,82,83,84,85,86,87,88,89,90,92,93,94,95,96,97,98,99,100,101,102,103,104,105,106,107,108,109,110,111,112,113,114,115,116,117,118,119,120,121,122,123,124,125,126}
 
-sdm_thisChar = {name=UnitName("player"), realm=GetRealmName()}
+sdm_thisChar = {name=UnitName('player'), realm=GetRealmName()}
 sdm_doAfterCombat={} --a collection of strings that will be run as scripts when combat ends
 
 function sdm_SlashHandler(command)
-	if command=="" then
+	if command=='' then
 		if sdm_mainFrame:IsShown() then
 			sdm_Quit()
 		else
 			sdm_mainFrame:Show()
 		end
-	elseif command:sub(1,4):lower()=="run " then
+	elseif command:sub(1,4):lower()=='run ' then
 		sdm_RunScript(command:sub(5))
 	else
-	  print(sdm_printPrefix.."SDM did not recognize the command \""..command.."\"")
+	  print( sdm_printPrefix .. 'SDM did not recognize the command "' .. command .. '"' )
 	end
 end
-SlashCmdList["SUPERDUPERMACRO"] = sdm_SlashHandler;
-SLASH_SUPERDUPERMACRO1 = "/sdm";
+SlashCmdList['SUPERDUPERMACRO'] = sdm_SlashHandler;
+SLASH_SUPERDUPERMACRO1 = '/sdm';
 
-sdm_eventFrame = CreateFrame("Frame")
-sdm_eventFrame:RegisterEvent("VARIABLES_LOADED")
-sdm_eventFrame:RegisterEvent("UPDATE_MACROS")
-sdm_eventFrame:SetScript("OnEvent", function (self, event, ...)
-	if event=="VARIABLES_LOADED" then
+sdm_eventFrame = CreateFrame('Frame')
+sdm_eventFrame:RegisterEvent('VARIABLES_LOADED')
+sdm_eventFrame:RegisterEvent('UPDATE_MACROS')
+sdm_eventFrame:SetScript('OnEvent', function (self, event, ...)
+	if event=='VARIABLES_LOADED' then
 		local oldVersion = sdm_version
-		sdm_version=GetAddOnMetadata("SuperDuperMacro", "Version") --the version of this addon
-		sdm_mainFrameTitle:SetText("Super Duper Macro "..sdm_version)
+		sdm_version=GetAddOnMetadata('SuperDuperMacro', 'Version') --the version of this addon
+		sdm_mainFrameTitle:SetText('Super Duper Macro '..sdm_version)
 		sdm_eventFrame:UnregisterEvent(event)
 		if (not sdm_macros) then
-			sdm_macros={} --type tokens: "b": button macro.  "f": floating macro.  "s": scripts.  "c": containers (folders)
+			sdm_macros={} --type tokens: 'b': button macro.  'f': floating macro.  's': scripts.  'c': containers (folders)
 		-- when updating versions, make sure that the saved data are appropriately updated.
 		elseif sdm_CompareVersions(oldVersion, sdm_version) == 2 then
-			if sdm_CompareVersions(oldVersion,"1.6")==2 then -- Hopefully nobody is upgrading from a version this old.  If they are, they should download 2.1 and run that once before upgrading to 2.2.
+			if sdm_CompareVersions(oldVersion,'1.6')==2 then -- Hopefully nobody is upgrading from a version this old.  If they are, they should download 2.1 and run that once before upgrading to 2.2.
 				sdm_macros={}
 			end
-			if sdm_CompareVersions(oldVersion,"1.6.1")==2 then
+			if sdm_CompareVersions(oldVersion,'1.6.1')==2 then
 				for i,v in pairs(sdm_macros) do
-					if v.buttonName=="" then
-						v.buttonName=" "
+					if v.buttonName=='' then
+						v.buttonName=' '
 					end
 				end
 			end
-			if sdm_CompareVersions(oldVersion,"2.2")==2 then
+			if sdm_CompareVersions(oldVersion,'2.2')==2 then
 				for i,v in pairs(sdm_macros) do
 					if v.character then
 						v.characters = {v.character}
@@ -55,7 +55,7 @@ sdm_eventFrame:SetScript("OnEvent", function (self, event, ...)
 					end
 				end
 			end
-			if sdm_CompareVersions(oldVersion,"2.4.2")==2 then
+			if sdm_CompareVersions(oldVersion,'2.4.2')==2 then
 				for _,v in pairs(sdm_macros) do
 					if v.icon then
 						v.icon = sdm_defaultIcon
@@ -75,13 +75,13 @@ sdm_eventFrame:SetScript("OnEvent", function (self, event, ...)
 		sdm_iconSize = sdm_iconSize or 36
 		if not sdm_listFilters then
 			sdm_listFilters={b=true, f=true, s=true, global=true}
-			sdm_listFilters["true"]=true
-			sdm_listFilters["false"]=true
+			sdm_listFilters['true']=true
+			sdm_listFilters['false']=true
 		end
 		sdm_iconSizeSlider:SetValue(sdm_iconSize)
-		sdm_iconSizeSlider:SetScript("OnValueChanged", function(self) sdm_iconSize = self:GetValue() sdm_UpdateList() end)
+		sdm_iconSizeSlider:SetScript('OnValueChanged', function(self) sdm_iconSize = self:GetValue() sdm_UpdateList() end)
 		sdm_SelectItem(nil) --We want to start with no macro selected
-	elseif event=="UPDATE_MACROS" then
+	elseif event=='UPDATE_MACROS' then
 		-- SDM uses this event for two things.  Whenever you log into the game, UPDATE_MACROS is fired twice.  After the second firing, the macros are loaded.  This is when SDM deletes extraneous macros that it has created before.  This generally happens if you use different computers or if you don't use SDM for a while.  Whenever you log in, SDM makes sure that your macro list jives with the info in SavedVariables.
 		if sdm_countUpdateMacrosEvents == 0 then
 			sdm_countUpdateMacrosEvents = 1
@@ -98,7 +98,7 @@ sdm_eventFrame:SetScript("OnEvent", function (self, event, ...)
 				if thisID then --if the macro was created by SDM...
 					if killOnSight[thisID] then --if this ID is marked as kill-on-sight, kill it.
 						table.insert(macrosToDelete, i)
-					elseif (not mTab) or mTab.type~="b" or (not sdm_UsedByThisChar(mTab)) then --if this ID is not in use by this character as a button macro, kill it and mark this ID as KoS
+					elseif (not mTab) or mTab.type~='b' or (not sdm_UsedByThisChar(mTab)) then --if this ID is not in use by this character as a button macro, kill it and mark this ID as KoS
 						table.insert(macrosToDelete, i)
 						killOnSight[thisID]=1
 					elseif (mTab.characters~=nil)~=iIsPerCharacter then --if the macro is in the wrong spot based on perCharacter, kill it, but give it a chance to find one in the right spot.
@@ -109,7 +109,7 @@ sdm_eventFrame:SetScript("OnEvent", function (self, event, ...)
 				end
 			end
 			for i=getn(macrosToDelete),1,-1 do -- we delete in descending order so that the indices don't get messed up while we're deleting, which would cause us to delete the wrong macros
-				print(sdm_printPrefix.."Deleting extraneous macro "..macrosToDelete[i]..": "..GetMacroInfo(macrosToDelete[i]))
+				print(sdm_printPrefix..'Deleting extraneous macro '..macrosToDelete[i]..': '..GetMacroInfo(macrosToDelete[i]))
 				DeleteMacro(macrosToDelete[i])
 			end
 			for i,v in pairs(sdm_macros) do
@@ -121,23 +121,23 @@ sdm_eventFrame:SetScript("OnEvent", function (self, event, ...)
 		if sdm_countUpdateMacrosEvents == 2 then
 			-- If the macros are loaded, update the number of button macros on the SDM frame
 			local numAccountMacros, numCharacterMacros = GetNumMacros()
-			sdm_macroLimitText:SetText("Global macros: "..numAccountMacros.."/"..MAX_ACCOUNT_MACROS.."\nCharacter-specific macros: "..numCharacterMacros.."/"..MAX_CHARACTER_MACROS)
+			sdm_macroLimitText:SetText('Global macros: '..numAccountMacros..'/'..MAX_ACCOUNT_MACROS.."\nCharacter-specific macros: "..numCharacterMacros..'/'..MAX_CHARACTER_MACROS)
 		end
-	elseif event=="ADDON_LOADED" then
+	elseif event=='ADDON_LOADED' then
 		local addonName = ...;
-		if addonName=="Blizzard_MacroUI" then
+		if addonName=='Blizzard_MacroUI' then
 			sdm_eventFrame:UnregisterEvent(event)
 			sdm_DefaultMacroFrameLoaded()
 		end
-	elseif event=="PLAYER_REGEN_ENABLED" then
+	elseif event=='PLAYER_REGEN_ENABLED' then
 		sdm_eventFrame:UnregisterEvent(event)
 		for _,luaText in ipairs(sdm_doAfterCombat) do
 			RunScript(luaText)
 		end
 		sdm_doAfterCombat={}
-		print(sdm_printPrefix.."Your macros are now up to date.")
-	elseif event=="CHAT_MSG_ADDON" then
-		--print("debug:", event, ...)
+		print(sdm_printPrefix..'Your macros are now up to date.')
+	elseif event=='CHAT_MSG_ADDON' then
+		--print('debug:', event, ...)
 		if ... == sdm_msgPrefix then
 			sdm_InterpretAddonMessage(...)
 		end
@@ -157,24 +157,24 @@ end
 
 
 function sdm_MakeMacroFrame(name, text)
-	sdm_DoOrQueue("local temp = getglobal("..sdm_Stringer(name)..") or CreateFrame(\"Button\", "..sdm_Stringer(name)..", nil, \"SecureActionButtonTemplate\")\
+	sdm_DoOrQueue('local temp = getglobal('..sdm_Stringer(name)..") or CreateFrame(\"Button\", "..sdm_Stringer(name)..", nil, \"SecureActionButtonTemplate\")\
 	temp:SetAttribute(\'type\', \'macro\')\
-	temp:SetAttribute(\'macrotext\', "..sdm_Stringer(text)..")")
-	if string.len(text)>1023 then print(sdm_printPrefix.."The following line is "..(string.len(text)-1023).." characters too long:\n"..text) end
+	temp:SetAttribute(\'macrotext\', "..sdm_Stringer(text)..')')
+	if string.len(text)>1023 then print(sdm_printPrefix..'The following line is '..(string.len(text)-1023).." characters too long:\n"..text) end
 end
 
 function sdm_MakeBlizzardMacro(ID, name, icon, text, perCharacter)
-	sdm_DoOrQueue("local macroIndex = sdm_GetMacroIndex("..sdm_Stringer(ID)..")\
+	sdm_DoOrQueue('local macroIndex = sdm_GetMacroIndex('..sdm_Stringer(ID)..")\
 	if macroIndex then\
-		EditMacro(macroIndex, "..sdm_Stringer(name)..", "..sdm_Stringer(icon)..", "..sdm_Stringer(text)..", 1, "..sdm_Stringer(perCharacter)..")\
+		EditMacro(macroIndex, "..sdm_Stringer(name)..', '..sdm_Stringer(icon)..', '..sdm_Stringer(text)..', 1, '..sdm_Stringer(perCharacter)..")\
 	else\
-		CreateMacro("..sdm_Stringer(name)..", "..sdm_Stringer(icon or 1)..", "..sdm_Stringer(text)..", "..sdm_Stringer(perCharacter)..", 1)\
+		CreateMacro("..sdm_Stringer(name)..', '..sdm_Stringer(icon or 1)..', '..sdm_Stringer(text)..', '..sdm_Stringer(perCharacter)..", 1)\
 	end")
 end
 
 function sdm_GetSdmID(macroIndex)
 	local thisMacroText=GetMacroBody(macroIndex)
-	if thisMacroText and thisMacroText:sub(1,4)=="#sdm" then
+	if thisMacroText and thisMacroText:sub(1,4)=='#sdm' then
 		return sdm_charsToNum(thisMacroText:sub(5,thisMacroText:find("\n")-1))
 	else
 		return nil
@@ -191,7 +191,7 @@ function sdm_GetMacroIndex(sdmID)
 end
 
 function sdm_GetLinkText(nextName)
-	return "/click [btn:5]"..nextName.." Button5;[btn:4]"..nextName.." Button4;[btn:3]"..nextName.." MiddleButton;[btn:2]"..nextName.." RightButton;"..nextName
+	return '/click [btn:5]'..nextName..' Button5;[btn:4]'..nextName..' Button4;[btn:3]'..nextName..' MiddleButton;[btn:2]'..nextName..' RightButton;'..nextName
 end
 
 
@@ -285,10 +285,10 @@ end
 
 
 function sdm_UnSetUpMacro(mTab)
-	if sdm_UsedByThisChar(mTab) and (mTab.type=="b" or mTab.type=="f") then
-		sdm_DoOrQueue("getglobal("..sdm_Stringer("sd"..mTab.type.."_"..mTab.name).."):SetAttribute(\"type\", nil)")
-		if mTab.type=="b" then
-			sdm_DoOrQueue("DeleteMacro(sdm_GetMacroIndex("..sdm_Stringer(mTab.ID).."))")
+	if sdm_UsedByThisChar(mTab) and (mTab.type=='b' or mTab.type=='f') then
+		sdm_DoOrQueue('getglobal('..sdm_Stringer('sd'..mTab.type..'_'..mTab.name).."):SetAttribute(\"type\", nil)")
+		if mTab.type=='b' then
+			sdm_DoOrQueue('DeleteMacro(sdm_GetMacroIndex('..sdm_Stringer(mTab.ID)..'))')
 		end
 	end
 end
@@ -399,8 +399,8 @@ end
 
 function sdm_DoOrQueue(luaText) --If player is not in combat, runs the command. Otherwise, queues it up to be executed when combat is dropped.
 	if InCombatLockdown() then
-		sdm_eventFrame:RegisterEvent("PLAYER_REGEN_ENABLED")
-		print(sdm_printPrefix.."Changes to macros will not take effect until combat ends.")
+		sdm_eventFrame:RegisterEvent('PLAYER_REGEN_ENABLED')
+		print(sdm_printPrefix..'Changes to macros will not take effect until combat ends.')
 		table.insert(sdm_doAfterCombat, luaText)
 	else
 		RunScript(luaText)
@@ -408,7 +408,7 @@ function sdm_DoOrQueue(luaText) --If player is not in combat, runs the command. 
 end
 
 function sdm_Stringer(var) --converts a variable to a string for purposes of putting it in a string for RunScript(). Strings are formatted as quoted strings, other vars are converted to strings.
-	if type(var)=="string" then
+	if type(var)=='string' then
 		return string.format("%q", var)
 	else
 		return tostring(var)
@@ -420,7 +420,7 @@ function sdm_CompareVersions(firstString, secondString) --returns 1 if the first
 	local numbers = {}
 	while 1 do
 		for i=1, 2 do
-			if (not strings[i]) then strings[i]="0" end
+			if (not strings[i]) then strings[i]='0' end
 			local indexOfPeriod=(strings[i]):find("%.")
 			if (not indexOfPeriod) then
 				numbers[i]=strings[i]
@@ -448,21 +448,21 @@ function sdm_Edit(mTab, text)
 end
 
 function sdm_CheckCreationSafety(type, name, character) --returns the mTab of the new macro, or nil if creation failed
-	if name=="" then
-		print(sdm_printPrefix.."Invalid name")
+	if name=='' then
+		print(sdm_printPrefix..'Invalid name')
 		return false
 	end
-	if type=="c" then
+	if type=='c' then
 		return true
-	elseif (type=="b" or type=="f") and sdm_ContainsIllegalChars(name, true) then
+	elseif (type=='b' or type=='f') and sdm_ContainsIllegalChars(name, true) then
 		return false
 	end
-	if type=="b" then
+	if type=='b' then
 		if (not character) and GetMacroInfo(MAX_ACCOUNT_MACROS) then
-			print(sdm_printPrefix.."You already have "..MAX_ACCOUNT_MACROS.." global macros.")
+			print(sdm_printPrefix..'You already have '..MAX_ACCOUNT_MACROS..' global macros.')
 			return false
 		elseif character and character.name==sdm_thisChar.name and character.realm==sdm_thisChar.realm and GetMacroInfo(sdm_MaxTotalMacros) then
-			print(sdm_printPrefix.."You already have "..MAX_CHARACTER_MACROS.." character-specific macros.")
+			print(sdm_printPrefix..'You already have '..MAX_CHARACTER_MACROS..' character-specific macros.')
 			return false
 		end
 	end
@@ -490,7 +490,7 @@ function sdm_CreateNew(type, name, character) --returns the mTab of the new macr
 	sdm_macros[mTab.ID]=mTab
 	mTab.type=type
 	mTab.name=name
-	if type=="c" then
+	if type=='c' then
 		mTab.open = true
 		mTab.contents = {}
 	else
@@ -498,7 +498,7 @@ function sdm_CreateNew(type, name, character) --returns the mTab of the new macr
 		if sdm_receiving and sdm_receiving.text then
 			mTab.text=sdm_receiving.text
 			mTab.icon=sdm_receiving.icon
-			SendAddonMessage(sdm_msgPrefix, sdm_msgCommands.ReceivingDone, "WHISPER", sdm_receiving.playerName) -- let the sender know that we've saved the macro
+			SendAddonMessage(sdm_msgPrefix, sdm_msgCommands.ReceivingDone, 'WHISPER', sdm_receiving.playerName) -- let the sender know that we've saved the macro
 			sdm_EndReceiving("|cff44ff00Saved|r")
 		elseif sdm_saveAsText then
 			mTab.text = sdm_saveAsText
@@ -506,12 +506,12 @@ function sdm_CreateNew(type, name, character) --returns the mTab of the new macr
 			sdm_saveAsText = nil
 			sdm_saveAsIcon = nil
 		else
-			if type=="s" then
-				mTab.text="-- Enter lua commands here."
-			elseif type=="b" or type=="f" then
-				mTab.text="# Enter macro text here."
+			if type=='s' then
+				mTab.text='-- Enter lua commands here.'
+			elseif type=='b' or type=='f' then
+				mTab.text='# Enter macro text here.'
 			else --this shouldn't happen
-				mTab.text=""
+				mTab.text=''
 			end
 		end
 		if character then
@@ -533,17 +533,17 @@ function sdm_UpgradeMacro(index) -- Upgrades the given standard macro to a Super
 	if index > MAX_ACCOUNT_MACROS then
 		character = sdm_thisChar
 	end
-	local safe = sdm_CheckCreationSafety("b", name, character)
+	local safe = sdm_CheckCreationSafety('b', name, character)
 	if not safe then
 		return -- the creation failed
 	end
 	local body = GetMacroBody(index)
-	EditMacro(index, nil, nil, "#sdm"..sdm_numToChars(sdm_GetEmptySlot()).."\n#placeholder") -- let SDM know that this is the macro to edit
+	EditMacro(index, nil, nil, '#sdm'..sdm_numToChars(sdm_GetEmptySlot()).."\n#placeholder") -- let SDM know that this is the macro to edit
 	local _, texture = GetMacroInfo(index) -- This must be done AFTER the macro body is edited, or the question mark could show up as something else.
-  if type(texture) ~= "number" then
-    texture = texture:sub(17) -- remove the "INTERFACE\\ICONS\\"
+  if type(texture) ~= 'number' then
+    texture = texture:sub(17) -- remove the 'INTERFACE\\ICONS\\'
   end
-	local newMacro = sdm_CreateNew("b", name, character)
+	local newMacro = sdm_CreateNew('b', name, character)
 	newMacro.icon = texture
 	sdm_Edit(newMacro, body)
 	return newMacro
@@ -555,7 +555,7 @@ function sdm_DowngradeMacro(mTab)
 		print(sdm_printPrefix.."You can't downgrade a macro during combat.")
 		return
 	end
-	if mTab.type ~= "b" then -- only button macros can be downgraded
+	if mTab.type ~= 'b' then -- only button macros can be downgraded
 		return
 	end
 	local index = sdm_GetMacroIndex(mTab.ID)
@@ -589,7 +589,7 @@ end
 function sdm_RunScript(name)
 	local luaText = nil
 	for i,v in pairs(sdm_macros) do
-		if v.type=="s" and v.name==name and sdm_UsedByThisChar(v) then
+		if v.type=='s' and v.name==name and sdm_UsedByThisChar(v) then
 			luaText=v.text
 			break
 		end
@@ -605,7 +605,7 @@ end
 function sdm_DoesNameConflict(name, type, chars, ignoring, printWarning)
 	local conflict
 	for i,v in pairs(sdm_macros) do
-		if v.type~="c" and i~=ignoring and v.type==type and v.name==name then -- the type and name are the same.  Let's see if they are used by the same characters...
+		if v.type~='c' and i~=ignoring and v.type==type and v.name==name then -- the type and name are the same.  Let's see if they are used by the same characters...
 			conflict = false
 			if ((not chars) or (not sdm_macros[i].characters)) then -- one or both of them is global, meaning that it is used by all characters.
 				conflict = true
@@ -619,7 +619,7 @@ function sdm_DoesNameConflict(name, type, chars, ignoring, printWarning)
 			end
 			if conflict then
 				if printWarning then
-					print(sdm_printPrefix.."You may not have more than one of the same type with the same name (unless they are specific to different characters).")
+					print(sdm_printPrefix..'You may not have more than one of the same type with the same name (unless they are specific to different characters).')
 				end
 				return i
 			end
@@ -673,7 +673,7 @@ function sdm_numToChars(num) --converts a number into a string (with maximum com
 	while num >= math.pow(base, place+1) do
 		place=place+1
 	end
-	local chars=""
+	local chars=''
 	local count=0
 	local digit
 	local value
