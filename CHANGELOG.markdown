@@ -2,12 +2,18 @@
 
 `git log` is another good way to peer into the innards of this repository.
 
-*Note that this document uses*
-
-* "SDM" to mean "Super Duper Macro"
-* "WoW" to mean "World of Warcraft"
 
 
+# 8.x - Battle for Azeroth (BfA)
+
+
+## 8.2 series
+
+## 8.2.5.0
+
+- TOC bump
+
+ 
 ## 8.0 series
 
 ### 8.2.0.1
@@ -79,7 +85,7 @@ spiralofhope's fork - https://github.com/spiralofhope/SuperDuperMacro
 - Added tagging to the git repository, for all previous releases mentioned with `git log`.
   -  This allows a user to visit the git repository to easily view any of those tagged versions.
 - Documentation update.
-- Changing SDM's version numbering scheme to show what version of WoW it's been most recently tested-against.
+- Changing SuperDuperMacro's version numbering scheme to show what version of World of Warcraft it's been most recently tested-against.
 
 
 ### 2014-10-16 - 2.6.1
@@ -89,7 +95,7 @@ spiralofhope's fork - https://github.com/spiralofhope/SuperDuperMacro
 
 ### 2014-10-16 - 2.6
 
-* Fixes character-specific macros, which broke when WoW 6 (Warlords of Draenor) gave us more global macros.
+* Fixes character-specific macros, which broke when World of Warcraft 6 (Warlords of Draenor) gave us more global macros.
 
 
 ### 2012-02-20 - 2.4.6
@@ -105,7 +111,7 @@ spiralofhope's fork - https://github.com/spiralofhope/SuperDuperMacro
 
 ### 2011-12-17 - 2.4.4
 
-* Fixed a bug where the button on the macro frame that opens SDM would sometimes appear in the wrong place.
+* Fixed a bug where the button on the macro frame that opens SuperDuperMacro would sometimes appear in the wrong place.
 
 
 ### 2011-11-30 - 2.4.3
@@ -115,26 +121,26 @@ spiralofhope's fork - https://github.com/spiralofhope/SuperDuperMacro
 
 ### 2011-11-30 - 2.4.2
 
-* Fixed a minor error that occurs when running SDM for the first time
-* When attempting to pick up a macro during combat, you will get an error message created by SDM instead of Blizzard's `Interface action failed due to an addon`.
+* Fixed a minor error that occurs when running SuperDuperMacro for the first time
+* When attempting to pick up a macro during combat, you will get an error message created by SuperDuperMacro instead of Blizzard's `Interface action failed due to an addon`.
 
 
 ### 2011-11-30 - 2.4.1
 
-* Updated for WoW 4.0 (Cataclysm)
+* Updated for World of Warcraft 4.0 (Cataclysm)
   *  You will lose any custom icons for your macros.  Sorry!
 
 
 ### 2011-11-20 - 2.4
 
 * Fixed the Send/Receive feature; now you can share macros with your friends again, as long as you are both using the latest version.
-* Fixed a bug where buttons on the SDM frame would sometimes stretch away.
+* Fixed a bug where buttons on the SuperDuperMacro frame would sometimes stretch away.
 * Many UI Improvements.
 
 
 ### 2011-11-16 - 2.3
 
-* The SDM frame now hides when you press `escape`.
+* The SuperDuperMacro frame now hides when you press `escape`.
 * Added more tooltips.
 
 
@@ -147,7 +153,7 @@ spiralofhope's fork - https://github.com/spiralofhope/SuperDuperMacro
 
 * Upgraded macros will now appropriately change their icons based on the macro code (unless an icon other than the Question Mark icon was selected).
   *  If you upgraded a macro with version 2.1, you will need to manually change the icon to the Question Mark icon.
-* Added a `Downgrade` button that converts a SDM macro into a standard macro.
+* Added a `Downgrade` button that converts a SuperDuperMacro macro into a standard macro.
 * Added a `Claim`/`Disown` button that allows you to have a single character-specific macro or script that applies to multiple characters.
 * Added a `Save As...` button that allows you to save an existing macro as a different type or character.
   *  For example, you can save a button macro as a floating macro if you want to free up a macro slot.
@@ -156,7 +162,7 @@ spiralofhope's fork - https://github.com/spiralofhope/SuperDuperMacro
 
 ### 2011-10-19 - 2.1
 
-* Added an `Upgrade` button to the standard macro frame, allowing you to convert a standard macro into a SDM macro.
+* Added an `Upgrade` button to the standard macro frame, allowing you to convert a standard macro into a SuperDuperMacro macro.
 * Removed an overbearing version-checking system.
 
 
@@ -179,7 +185,7 @@ spiralofhope's fork - https://github.com/spiralofhope/SuperDuperMacro
 
 ### 2009-02-21 - 1.8.1
 
-* SDM no longer conflicts with LayMacroTooltip or with other addons that modify the macro frame.
+* SuperDuperMacro no longer conflicts with LayMacroTooltip or with other addons that modify the macro frame.
 
 
 ### 2009-02-20 - 1.8
@@ -211,13 +217,13 @@ spiralofhope's fork - https://github.com/spiralofhope/SuperDuperMacro
   *  Click the `Usage...` button for details.
 * Added a command to run button macros.
   *  Click the `Usage...` button for details.
-* Added an interface for changing the name and icon of a macro within the SDM window.
+* Added an interface for changing the name and icon of a macro within the SuperDuperMacro window.
 * Button macro names now conflict with each other (unless they are specific to different characters).
 * Disallowed some characters in macro/script names because they were causing problems.
   *  You may find that some of these problematic characters still work on button macros, for which you can select a different name in the `Change Name/Icon` frame.
 * Changed the appearance of button macros when viewed in the default macro frame.
 * Added a clickable, scrolling menu of macros.  This will be further improved later.
-* Several efficiency improvements.  As a consequence, your SDM-created button macros will be removed from action bars and lose thieir icons.  Sorry!
+* Several efficiency improvements.  As a consequence, your SuperDuperMacro-created button macros will be removed from action bars and lose thieir icons.  Sorry!
 
 
 ### 2009-01-12 - 1.5.1
@@ -240,7 +246,7 @@ spiralofhope's fork - https://github.com/spiralofhope/SuperDuperMacro
 
 * Added an option to show/hide the text on macro buttons.
 * Fixed `>` to be more accurate.
-* SDM will no longer attempt to create, delete, or modify macros during combat.  You can still do these things, but the changes will not take effect until after combat.
+* SuperDuperMacro will no longer attempt to create, delete, or modify macros during combat.  You can still do these things, but the changes will not take effect until after combat.
 * Deleting floating macros will now actually disable them.
 * Greatly increased the efficiency of operations like saving and deleting.
 * Increased the limit on the length of each line to 1023, and made the number of lines limitless (actually, the maximum length of any string is 2^24 characters, so the limit is somewhere below that, but that's the length of about 20 average novels and it will probably crash your client).
@@ -256,15 +262,15 @@ spiralofhope's fork - https://github.com/spiralofhope/SuperDuperMacro
 ### 2008-12-15 - 1.3
 
 * You can now use the addon to store long scripts and call them via a function or slash command.
-* SDM now keeps track of the button macros it creates, and deletes orphaned ones upon login. If you are upgrading from a previous version, you can delete the old button macros that SDM created (the text of the new ones all start with `#sdm` ).
-* Because of this, SDM will no longer ever replace your macros, and their names do not need to be unique at all.  Floating macros and Scripts still have some restrictions on naming, you will get a warning it you try to violate them.
+* SuperDuperMacro now keeps track of the button macros it creates, and deletes orphaned ones upon login. If you are upgrading from a previous version, you can delete the old button macros that SuperDuperMacro created (the text of the new ones all start with `#sdm` ).
+* Because of this, SuperDuperMacro will no longer ever replace your macros, and their names do not need to be unique at all.  Floating macros and Scripts still have some restrictions on naming, you will get a warning it you try to violate them.
 * Added many UI improvements to make working with the addon more intuitive:
   *  Pressing `tab` will now add four spaces.
   *  Pressing `enter` will now be equivalent to the appropriate button click.
   *  Moved some buttons around to more appropriate places.
-  *  Added buttons that link between the regular macro window and the SDM window.
+  *  Added buttons that link between the regular macro window and the SuperDuperMacro window.
   *  Buttons will now "gray out" when appropriate.
-  *  The SDM window will now become unresponsive during confirmation dialogs.
+  *  The SuperDuperMacro window will now become unresponsive during confirmation dialogs.
 
 
 ### 2008-12-13 - 1.2
