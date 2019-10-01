@@ -9,7 +9,7 @@
 
 ## 8.2 series
 
-## 8.2.5.1 unreleased
+## 8.2.5.1
 
 - Significant style changes
 
