@@ -11,7 +11,7 @@
 
 ## 8.2.5.1 unreleased
 
-- Style changes
+- Significant style changes
 
 
 ## 8.2.5.0
