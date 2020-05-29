@@ -7,7 +7,17 @@
 # 8.x - Battle for Azeroth (BfA)
 
 
+## 8.3 series
+
+
+### 8.3.0.0
+
+- TOC bump
+
+
+
 ## 8.2 series
+
 
 ## 8.2.5.1
 
@@ -20,6 +30,7 @@
 
  
 ## 8.0 series
+
 
 ### 8.2.0.1
 
@@ -46,6 +57,7 @@
 
 
 ## 7.3 series
+
 
 ### BETA
 
@@ -77,6 +89,7 @@ I'll keep WoWInterface updated so people can use Minion and whatnot.
 
 - Commented-out `PlaySound()`, because it will now only accept soundkit IDs.
   -  It will be updated later.
+
 
 
 # Old notes
