@@ -37,7 +37,7 @@ sdm_eventFrame:SetScript( 'OnEvent', function ( self, event, ... )
 			sdm_macros={} -- type tokens: 'b': button macro.  'f': floating macro.  's': scripts.  'c': containers (folders)
 		-- when updating versions, make sure that the saved data are appropriately updated.
 		elseif sdm_CompareVersions( oldVersion, sdm_version ) == 2 then
-			if sdm_CompareVersions( oldVersion,'1.6' ) == 2 then -- Hopefully nobody is upgrading from a version this old.  If they are, they should download 2.1 and run that once before upgrading to 2.2.
+			if sdm_CompareVersions( oldVersion, '1.6' ) == 2 then -- Hopefully nobody is upgrading from a version this old.  If they are, they should download 2.1 and run that once before upgrading to 2.2.
 				sdm_macros={}
 			end
 			if sdm_CompareVersions( oldVersion, '1.6.1' ) == 2 then
@@ -480,7 +480,12 @@ function sdm_Stringer( var ) -- converts a variable to a string for purposes of 
 	end
 end
 
+
 function sdm_CompareVersions( firstString, secondString ) -- returns 1 if the first is bigger, 2 if the second is bigger, and 0 if they are equal.
+  -- The contemporary dual retail/classic build uses something like "retail 8.3.0.0, classic 1.13.0" and is always going to be a more recent version than the old stuff.
+  -- Furthermore, something like "8.3.0.0" is actually a string and is also a more recent version.
+  if type( firstString ) == 'string' then return 1 end
+
 	local strings = {firstString or '0', secondString or '0'}
 	local numbers = {}
 	while 1 do
@@ -505,6 +510,7 @@ function sdm_CompareVersions( firstString, secondString ) -- returns 1 if the fi
 		end
 	end
 end
+
 
 function sdm_Edit( mTab, text )
 	mTab.text=text
