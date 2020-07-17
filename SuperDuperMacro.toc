@@ -1,10 +1,10 @@
 # SuperDuperMacro has most recently been tested against:
 # Retail:
-#   Version 8.3.0 (34220) (Release x64)
-#   Apr 28 2020
+#   Version 8.3.0 (34963) (Release x64)
+#   Jun 26 2020
 # Classic:
-#   Version 1.13.4 (34266) (Release x64)
-#   May 1 2020
+#   Version 1.13.5 (35000) (Release x64)
+#   Jun 30 2020
 
 # The interface number can be learned with:
 #   /dump select( 4, GetBuildInfo() )
@@ -13,8 +13,8 @@
 
 ## Notes:                 Enables the creation of incredibly long macros.
 ## Author:                spiralofhope, hypehuman
-## Version:               retail 8.3.0.0, classic 1.13.0
-## X-Date:                2020-06-03
+## Version:               retail 8.3.0.1, classic 1.13.5.1
+## X-Date:                2020-07-16
 ## X-Website:             https://github.com/spiralofhope/SuperDuperMacro/
 ## X-Feedback:            https://github.com/spiralofhope/SuperDuperMacro/issues/new
 

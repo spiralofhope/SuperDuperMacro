@@ -7,6 +7,11 @@
 # 8.x - Battle for Azeroth (BfA)
 
 
+## retail 8.3.0.1, classic 1.13.5.1
+
+- Version check fix, since we're now using a version number string.
+
+
 ## retail 8.3.0.0, classic 1.13.0
 
 - TOC bump
