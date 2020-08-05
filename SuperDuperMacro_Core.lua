@@ -484,7 +484,7 @@ end
 function sdm_CompareVersions( firstString, secondString ) -- returns 1 if the first is bigger, 2 if the second is bigger, and 0 if they are equal.
   -- The contemporary dual retail/classic build uses something like "retail 8.3.0.0, classic 1.13.0" and is always going to be a more recent version than the old stuff.
   -- Furthermore, something like "8.3.0.0" is actually a string and is also a more recent version.
-  if type( firstString ) == 'string' then return 1 end
+  if type( secondString ) == 'string' then return 1 end
 
 	local strings = {firstString or '0', secondString or '0'}
 	local numbers = {}
