@@ -3,7 +3,7 @@
 #   Version 8.3.0 (34963) (Release x64)
 #   Jun 26 2020
 # Classic:
-#   Version 1.13.5 (35000) (Release x64)
+#   Version 1.13.5 (35395) (Release x64)
 #   Jun 30 2020
 
 # The interface number can be learned with:
@@ -13,8 +13,8 @@
 
 ## Notes:                 Enables the creation of incredibly long macros.
 ## Author:                spiralofhope, hypehuman
-## Version:               retail 8.3.0.1, classic 1.13.5.1
-## X-Date:                2020-07-16
+## Version:               retail 8.3.0.1, classic 1.13.5.2
+## X-Date:                2020-08-04
 ## X-Website:             https://github.com/spiralofhope/SuperDuperMacro/
 ## X-Feedback:            https://github.com/spiralofhope/SuperDuperMacro/issues/new
 

@@ -7,6 +7,12 @@
 # 8.x - Battle for Azeroth (BfA)
 
 
+## retail 8.3.0.1, classic 1.13.5.2
+
+- Fixed issue #28 - [classic] LUA error - compare two nil values
+  -  Proper-fixed my earlier version check fix.
+
+
 ## retail 8.3.0.1, classic 1.13.5.1
 
 - Version check fix, since we're now using a version number string.
