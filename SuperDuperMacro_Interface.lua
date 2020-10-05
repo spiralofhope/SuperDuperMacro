@@ -200,7 +200,9 @@ function sdm_SelectItem( newCurrentEdit )
 		sdm_saveButton:Disable()
 		sdm_saveAsButton:Disable()
 		sdm_downgradeButton:Disable()
-		sdm_sendButton:Disable()
+    -- See issue #29
+    -- https://github.com/spiralofhope/SuperDuperMacro/issues/29
+		--sdm_sendButton:Disable()
 		sdm_containerInstructions:Hide()
 	else
 		sdm_bodyBox:ClearFocus()

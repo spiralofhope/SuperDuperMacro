@@ -7,6 +7,12 @@
 # 8.x - Battle for Azeroth (BfA)
 
 
+## retail 8.3.7.1, classic 1.13.2
+
+- Tested for Shadowlands beta 9.0.2.36086
+- Working on issue #29 - Fix for Shadowlands
+
+
 ## retail 8.3.0.1, classic 1.13.5.2
 
 - Fixed issue #28 - [classic] LUA error - compare two nil values

@@ -213,12 +213,18 @@ sdm_bodyScroller:SetScrollChild( f )
 f = CreateFrame( 'Button', 'sdm_bodyBackground', sdm_mainFrame )
 f:SetPoint( 'BOTTOMLEFT', sdm_bodyScroller, -5, -5 )
 f:SetPoint( 'TOPRIGHT', sdm_bodyScroller, 27, 5 )
-f:SetBackdrop({
-	edgeFile = 'Interface\\Tooltips\\UI-Tooltip-Border',
-	tile = true,
-	tileSize = 16,
-	edgeSize = 16
-})
+
+
+-- See issue #29
+-- https://github.com/spiralofhope/SuperDuperMacro/issues/29
+--f:SetBackdrop({
+	--edgeFile = 'Interface\\Tooltips\\UI-Tooltip-Border',
+	--tile = true,
+	--tileSize = 16,
+	--edgeSize = 16
+--})
+
+
 f:SetScript( 'OnClick', function()
 	local e = sdm_bodyBox
 	local l = e:GetNumLetters()
@@ -254,12 +260,16 @@ sdm_listScroller:SetScrollChild( f )
 f = CreateFrame( 'Frame', 'sdm_listBackground', sdm_mainFrame )
 f:SetPoint( 'BOTTOMLEFT', sdm_listScroller, -5, -5 )
 f:SetPoint( 'TOPRIGHT', sdm_listScroller, 27, 5 )
-f:SetBackdrop({
-	edgeFile = 'Interface\\Tooltips\\UI-Tooltip-Border',
-	tile = true,
-	tileSize = 16,
-	edgeSize = 16
-})
+
+
+-- See issue #29
+-- https://github.com/spiralofhope/SuperDuperMacro/issues/29
+--f:SetBackdrop({
+	--edgeFile = 'Interface\\Tooltips\\UI-Tooltip-Border',
+	--tile = true,
+	--tileSize = 16,
+	--edgeSize = 16
+--})
 
 
 fs = f:CreateFontString( 'sdm_macroLimitText', 'OVERLAY', 'GameFontNormal' )
@@ -318,19 +328,25 @@ f:SetHeight( 17 )
 f:SetWidth( 141 )
 f:SetPoint( 'LEFT', sdm_collapseAllButton, 'RIGHT', 35, 0 )
 f:SetHitRectInsets( 0, 0, -10, -10 )
-f:SetBackdrop({
-	bgFile = '  Interface\\Buttons\\UI-SliderBar-Background',
-	edgeFile = 'Interface\\Buttons\\UI-SliderBar-Border',
-	tile = true,
-	tileSize = 8,
-	edgeSize = 8,
-	insets = {
-		left = 3,
-		right = 3,
-		top = 6,
-		bottom = 6
-	}
-})
+
+
+-- See issue #29
+-- https://github.com/spiralofhope/SuperDuperMacro/issues/29
+--f:SetBackdrop({
+	--bgFile = '  Interface\\Buttons\\UI-SliderBar-Background',
+	--edgeFile = 'Interface\\Buttons\\UI-SliderBar-Border',
+	--tile = true,
+	--tileSize = 8,
+	--edgeSize = 8,
+	--insets = {
+		--left = 3,
+		--right = 3,
+		--top = 6,
+		--bottom = 6
+	--}
+--})
+
+
 f:SetThumbTexture( 'Interface\\Buttons\\UI-SliderBar-Button-Horizontal' )
 sdm_SetTooltip( f, 'Change the display size of the macros in the list above.' )
 
@@ -345,19 +361,25 @@ f:Hide()
 f:SetToplevel( true )
 f:SetSize( 293, 60 )
 f:SetPoint( 'TOP', 70, -100 )
-f:SetBackdrop({
-	bgFile = 'Interface\\DialogFrame\\UI-DialogBox-Background',
-	edgeFile = 'Interface\\DialogFrame\\UI-DialogBox-Border',
-	tile = true,
-	tileSize = 32,
-	edgeSize = 32,
-		insets = {
-		left = 11,
-		right = 12,
-		top = 12,
-		bottom = 11
-	}
-})
+
+
+-- See issue #29
+-- https://github.com/spiralofhope/SuperDuperMacro/issues/29
+--f:SetBackdrop({
+	--bgFile = 'Interface\\DialogFrame\\UI-DialogBox-Background',
+	--edgeFile = 'Interface\\DialogFrame\\UI-DialogBox-Border',
+	--tile = true,
+	--tileSize = 32,
+	--edgeSize = 32,
+		--insets = {
+		--left = 11,
+		--right = 12,
+		--top = 12,
+		--bottom = 11
+	--}
+--})
+
+
 f:SetScript( 'OnShow', function( self )
 	sdm_OnShow_changeIconFrame( self )
 end)
@@ -388,25 +410,31 @@ f:Hide()
 f:SetWidth( 280 )
 f:SetHeight( 145 )
 f:SetPoint( 'CENTER', 70, 0 )
-f:SetBackdrop({
-	-- path to the background texture
-	bgFile = 'Interface\\DialogFrame\\UI-DialogBox-Background',
-	-- path to the border texture
-	edgeFile = 'Interface\\DialogFrame\\UI-DialogBox-Border',
-	-- true to repeat the background texture to fill the frame, false to scale it
-	tile = true,
-	-- size (width or height) of the square repeating background tiles (in pixels)
-	tileSize = 32,
-	-- thickness of edge segments and square size of edge corners (in pixels)
-	edgeSize = 32,
-	-- distance from the edges of the frame to those of the background texture (in pixels)
-	insets = {
-		left = 11,
-		right = 12,
-		top = 12,
-		bottom = 11
-	}
-})
+
+
+-- See issue #29
+-- https://github.com/spiralofhope/SuperDuperMacro/issues/29
+--f:SetBackdrop({
+	---- path to the background texture
+	--bgFile = 'Interface\\DialogFrame\\UI-DialogBox-Background',
+	---- path to the border texture
+	--edgeFile = 'Interface\\DialogFrame\\UI-DialogBox-Border',
+	---- true to repeat the background texture to fill the frame, false to scale it
+	--tile = true,
+	---- size (width or height) of the square repeating background tiles (in pixels)
+	--tileSize = 32,
+	---- thickness of edge segments and square size of edge corners (in pixels)
+	--edgeSize = 32,
+	---- distance from the edges of the frame to those of the background texture (in pixels)
+	--insets = {
+		--left = 11,
+		--right = 12,
+		--top = 12,
+		--bottom = 11
+	--}
+--})
+
+
 sdm_MakeDraggable( f )
 f:SetScript( 'OnHide', function() UIFrameFlashStop( sdm_createMacroButton_flash ) end )
 sdm_AddToExclusiveGroup( f, 'centerwindows' )
@@ -499,24 +527,31 @@ f:SetScript( 'OnClick', sdm_CancelNewMacroButtonPressed )
 --[[ Creation of the "Send/Receive" window ]]--
 -----------------------------------------------
 
+
 f = CreateFrame( 'Frame', 'sdm_sendReceiveFrame', sdm_mainFrame )
 f:Hide()
 f:SetWidth( 256 )
 f:SetHeight( 394 )
 f:SetPoint( 'LEFT', sdm_mainFrame, 'RIGHT', -10, 0 )
-f:SetBackdrop({
-	bgFile = 'Interface\\DialogFrame\\UI-DialogBox-Background',
-	edgeFile = 'Interface\\DialogFrame\\UI-DialogBox-Border',
-	tile = true,
-	tileSize = 32,
-	edgeSize = 32,
-	insets = {
-		left = 11,
-		right = 12,
-		top = 12,
-		bottom = 11
-	}
-})
+
+
+-- See issue #29
+-- https://github.com/spiralofhope/SuperDuperMacro/issues/29
+--f:SetBackdrop({
+	--bgFile = 'Interface\\DialogFrame\\UI-DialogBox-Background',
+	--edgeFile = 'Interface\\DialogFrame\\UI-DialogBox-Border',
+	--tile = true,
+	--tileSize = 32,
+	--edgeSize = 32,
+	--insets = {
+		--left = 11,
+		--right = 12,
+		--top = 12,
+		--bottom = 11
+	--}
+--})
+
+
 f:SetScript( 'OnShow', function()
 	sdm_sendReceiveButton:SetText( 'Share <<' )
 end)
@@ -549,20 +584,25 @@ f = CreateFrame( 'Frame', 'sdm_sendBarParent', sdm_sendReceiveFrame )
 f:SetWidth( 200 )
 f:SetHeight( 30 )
 f:SetPoint( 'TOP', 0, -181 )
-f:SetBackdrop({
-	bgFile = 'Interface\\Tooltips\\UI-Tooltip-Background',
-	edgeFile = 'Interface\\Tooltips\\UI-Tooltip-Border',
-	tile = true,
-	tileSize = 32,
-	edgeSize = 8,
-	insets = {
-		left = 2,
-		right = 2,
-		top = 2,
-		bottom = 2
-	}
-})
-f:SetBackdropColor( 0, 0, 0, 0.7 )
+
+
+-- See issue #29
+-- https://github.com/spiralofhope/SuperDuperMacro/issues/29
+--f:SetBackdrop({
+	--bgFile = 'Interface\\Tooltips\\UI-Tooltip-Background',
+	--edgeFile = 'Interface\\Tooltips\\UI-Tooltip-Border',
+	--tile = true,
+	--tileSize = 32,
+	--edgeSize = 8,
+	--insets = {
+		--left = 2,
+		--right = 2,
+		--top = 2,
+		--bottom = 2
+	--}
+--})
+--f:SetBackdropColor( 0, 0, 0, 0.7 )
+
 
 f = CreateFrame( 'StatusBar', 'sdm_sendStatusBar', sdm_sendBarParent )
 f:SetMinMaxValues( 0, 100 )
@@ -580,20 +620,25 @@ f = CreateFrame( 'Frame', 'sdm_receiveBarParent', sdm_sendReceiveFrame )
 f:SetWidth( 200 )
 f:SetHeight( 30 )
 f:SetPoint( 'TOP', 0, -351 )
-f:SetBackdrop({
-	bgFile = 'Interface\\Tooltips\\UI-Tooltip-Background',
-	edgeFile = 'Interface\\Tooltips\\UI-Tooltip-Border',
-	tile = true,
-	tileSize = 32,
-	edgeSize = 8,
-	insets = {
-		left = 2,
-		right = 2,
-		top = 2,
-		bottom = 2
-	}
-})
-f:SetBackdropColor( 0, 0, 0, 0.7 )
+
+
+-- See issue #29
+-- https://github.com/spiralofhope/SuperDuperMacro/issues/29
+--f:SetBackdrop({
+	--bgFile = 'Interface\\Tooltips\\UI-Tooltip-Background',
+	--edgeFile = 'Interface\\Tooltips\\UI-Tooltip-Border',
+	--tile = true,
+	--tileSize = 32,
+	--edgeSize = 8,
+	--insets = {
+		--left = 2,
+		--right = 2,
+		--top = 2,
+		--bottom = 2
+	--}
+--})
+--f:SetBackdropColor( 0, 0, 0, 0.7 )
+
 
 f = CreateFrame( 'StatusBar', 'sdm_receiveStatusBar', sdm_receiveBarParent )
 f:SetMinMaxValues( 0, 100 )
