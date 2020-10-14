@@ -297,7 +297,7 @@ f:SetWidth( 16 )
 f:SetHeight( 16 )
 f:SetPoint( 'TOPLEFT', 23, -70 )
 f:SetPoint( 'TOP', sdm_typeFilterDropdown, 'BOTTOM', 0, 3 )
-f:SetNormalTexture(   ' Interface\\Buttons\\UI-MinusButton-UP' )
+f:SetNormalTexture(    'Interface\\Buttons\\UI-MinusButton-UP' )
 f:SetCheckedTexture(   'Interface\\Buttons\\UI-PlusButton-UP' )
 f:SetHighlightTexture( 'Interface\\Buttons\\UI-PlusButton-Hilight', 'ADD' )
 f:SetNormalFontObject(    'GameFontNormal' )
@@ -320,7 +320,7 @@ f:SetWidth( 141 )
 f:SetPoint( 'LEFT', sdm_collapseAllButton, 'RIGHT', 35, 0 )
 f:SetHitRectInsets( 0, 0, -10, -10 )
 f:SetBackdrop({
-	bgFile = '  Interface\\Buttons\\UI-SliderBar-Background',
+	bgFile =   'Interface\\Buttons\\UI-SliderBar-Background',
 	edgeFile = 'Interface\\Buttons\\UI-SliderBar-Border',
 	tile = true,
 	tileSize = 8,

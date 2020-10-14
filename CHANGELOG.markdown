@@ -10,6 +10,7 @@
 
 - Fixed issue #29
   -  [SetBackdrop](https://github.com/Stanzilla/WoWUIBugs/wiki/9.0.1-Consolidated-UI-Changes#backdrop-system-changes)
+- Fixed issue #26 - Fix textures
 
 
 # 8.x - Battle for Azeroth (BfA)
