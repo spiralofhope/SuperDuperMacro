@@ -193,7 +193,7 @@ f:SetAutoFocus( false )
 f:SetWidth( sdm_bodyScroller:GetWidth() )
 f:SetHeight( 20 ) -- automatically resizes if there based on the amount of text
 f:SetScript( 'OnEscapePressed', function( self ) self:ClearFocus() end )
-f:SetScript( 'OnTabPressed', function( self ) self:Insert('    ') end )
+f:SetScript( 'OnTabPressed', function( self ) self:Insert( '    ' ) end )
 f:SetScript( 'OnTextSet', function()
 	sdm_saveButton:Disable()
 	sdm_textChanged = -2

@@ -8,7 +8,7 @@
 
 ## retail 9.0.1, classic UNTESTED
 
-- Fixed issue #29
+- Fixed issue #29 - Fix for Shadowlands
   -  [SetBackdrop](https://github.com/Stanzilla/WoWUIBugs/wiki/9.0.1-Consolidated-UI-Changes#backdrop-system-changes)
 - Fixed issue #26 - Fix textures
 
