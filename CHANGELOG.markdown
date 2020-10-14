@@ -4,6 +4,14 @@
 
 
 
+# 9.x - Shadowlands
+
+## retail 9.0.1, classic UNTESTED
+
+- Fixed issue #29
+  -  [SetBackdrop](https://github.com/Stanzilla/WoWUIBugs/wiki/9.0.1-Consolidated-UI-Changes#backdrop-system-changes)
+
+
 # 8.x - Battle for Azeroth (BfA)
 
 
