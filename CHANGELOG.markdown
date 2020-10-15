@@ -7,6 +7,12 @@
 # 9.x - Shadowlands
 
 
+## retail 9.0.1.2, classic 1.13.5.4
+
+- Fixed error with popup dialog
+  -  `Action[SetPoint] failed because[SetPoint would result in anchor family connection]`
+
+
 ## retail 9.0.1.1, classic 1.13.5.4
 
 - Fixed issue #29 - Fix for Shadowlands

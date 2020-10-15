@@ -835,7 +835,7 @@ function sdm_SaveConfirmationBox( postponed )
 			timeout = 0,
 			whileDead =1
 		}
-		StaticPopup_Show( 'SDM_CONFIRM' ):SetPoint( 'CENTER', 'sdm_mainFrame', 'CENTER' )
+		StaticPopup_Show( 'SDM_CONFIRM' ):SetPoint( 'CENTER', UIParent, 'CENTER' )
 	end
 end
 
