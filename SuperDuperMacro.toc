@@ -14,7 +14,7 @@
 
 ## Notes:                 Enables the creation of incredibly long macros.
 ## Author:                spiralofhope, hypehuman
-## Version:               retail 9.0.1.1, classic 1.13.5.4
+## Version:               retail 9.0.1.2, classic 1.13.5.4
 ## X-Date:                2020-10-14
 ## X-Website:             https://github.com/spiralofhope/SuperDuperMacro/
 ## X-Feedback:            https://github.com/spiralofhope/SuperDuperMacro/issues/new
