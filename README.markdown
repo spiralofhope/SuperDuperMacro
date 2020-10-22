@@ -27,6 +27,8 @@ A fork of
      -  Accept GitHub pull requests.
      -  Add you as a contributor on GitHub.
      -  Hand this project over!
+- There is basic compatibility with [LargerMacroIconSelection](https://www.wowinterface.com/downloads/info11189-LargerMacroIconSelection.html)
+  -  (just don't click it's `ok` at the bottom-right)
 
 
 
