@@ -1,3 +1,9 @@
+# I have left the game
+
+I have left the game and this AddOn is no longer maintained; feel free to fork it.  I'm leaving things as they are so you can chat with one another via the issue ticketing system.
+
+
+
 # Super Duper Macro
 
 A 
