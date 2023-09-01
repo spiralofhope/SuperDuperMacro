@@ -1026,6 +1026,7 @@ function sdm_DefaultMacroFrameLoaded()
 
 	sdm_CreateDefaultMacroFrameButtons()
 
+	if MacroFrame and MacroFrame:IsShown() then
 	hooksecurefunc( 'MacroFrame_Update', function() -- This function prevents the user from messing with macros created by SDM.
 		local selectedIsSDM = nil
 		local globalTab = ( MacroFrame.macroBase == 0 ) --Is this the global tab or the character-specific tab?
@@ -1059,6 +1060,7 @@ function sdm_DefaultMacroFrameLoaded()
 			end
 		end
 	end)
+	end
 end
 
 --[[ Interface-related Variables ]]--
