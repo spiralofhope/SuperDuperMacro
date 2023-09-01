@@ -1027,39 +1027,39 @@ function sdm_DefaultMacroFrameLoaded()
 	sdm_CreateDefaultMacroFrameButtons()
 
 	if MacroFrame and MacroFrame:IsShown() then
-	hooksecurefunc( 'MacroFrame_Update', function() -- This function prevents the user from messing with macros created by SDM.
-		local selectedIsSDM = nil
-		local globalTab = ( MacroFrame.macroBase == 0 ) --Is this the global tab or the character-specific tab?
-		for i,v in pairs( sdm_macros ) do
-			if v.type == 'b'
-      and sdm_UsedByThisChar( v )
-      and ( ( globalTab and v.characters == nil ) or ( ( not globalTab ) and v.characters ) )
-      then -- if this item is supposed to have a macro in this tab
-				local index = sdm_GetMacroIndex( v.ID )
-				local prefix = 'MacroButton' .. index-MacroFrame.macroBase
-				if index == MacroFrame.selectedMacro then --The currently selected macro is a SDM macro.  Deselect it for now, then later select another one.
-					selectedIsSDM = index-MacroFrame.macroBase
-					_G[ prefix ]:SetChecked( nil )
-					MacroFrame.selectedMacro = nil
-					MacroFrame_HideDetails()
+		hooksecurefunc( 'MacroFrame_Update', function() -- This function prevents the user from messing with macros created by SDM.
+			local selectedIsSDM = nil
+			local globalTab = ( MacroFrame.macroBase == 0 ) --Is this the global tab or the character-specific tab?
+			for i,v in pairs( sdm_macros ) do
+				if v.type == 'b'
+		and sdm_UsedByThisChar( v )
+		and ( ( globalTab and v.characters == nil ) or ( ( not globalTab ) and v.characters ) )
+		then -- if this item is supposed to have a macro in this tab
+					local index = sdm_GetMacroIndex( v.ID )
+					local prefix = 'MacroButton' .. index-MacroFrame.macroBase
+					if index == MacroFrame.selectedMacro then --The currently selected macro is a SDM macro.  Deselect it for now, then later select another one.
+						selectedIsSDM = index-MacroFrame.macroBase
+						_G[ prefix ]:SetChecked( nil )
+						MacroFrame.selectedMacro = nil
+						MacroFrame_HideDetails()
+					end
+					_G[ prefix ]:Disable()
+					_G[ prefix .. 'Icon' ]:SetTexture( 'Interface\\AddOns\\SuperDuperMacro\\images\\SDM-Icon.tga' )
+					_G[ prefix .. 'Name' ]:SetText( "|cff000000SDM|r" )
 				end
-				_G[ prefix ]:Disable()
-				_G[ prefix .. 'Icon' ]:SetTexture( 'Interface\\AddOns\\SuperDuperMacro\\images\\SDM-Icon.tga' )
-				_G[ prefix .. 'Name' ]:SetText( "|cff000000SDM|r" )
 			end
-		end
-		if selectedIsSDM then
-			local index=selectedIsSDM+1
-			while index<=MacroFrame.macroMax do -- if index exceeds this value, we know should stop because we've exceeded the number of slots on this pane.
-				local buttonToCheck = _G[ 'MacroButton' .. index ]
-				if buttonToCheck:IsEnabled() == 1 then
-					buttonToCheck:Click()
-					break
+			if selectedIsSDM then
+				local index=selectedIsSDM+1
+				while index<=MacroFrame.macroMax do -- if index exceeds this value, we know should stop because we've exceeded the number of slots on this pane.
+					local buttonToCheck = _G[ 'MacroButton' .. index ]
+					if buttonToCheck:IsEnabled() == 1 then
+						buttonToCheck:Click()
+						break
+					end
+					index = index + 1
 				end
-				index = index + 1
 			end
-		end
-	end)
+		end)
 	end
 end
 
