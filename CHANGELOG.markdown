@@ -9,7 +9,7 @@
 
 ## UNRELEASED
 
-- Nothing basic compatibility with [LargerMacroIconSelection](https://www.wowinterface.com/downloads/info11189-LargerMacroIconSelection.html)
+- Noting basic compatibility with [LargerMacroIconSelection](https://www.wowinterface.com/downloads/info11189-LargerMacroIconSelection.html)
 
 
 ## retail 9.0.1.2, classic 1.13.5.4
